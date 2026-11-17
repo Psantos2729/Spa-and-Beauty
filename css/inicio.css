@@ -71,7 +71,6 @@
 .presenta { padding-top: var(--seccion); padding-bottom: calc(var(--seccion) / 2); }
 .presenta__fila { align-items: end; }
 .presenta__fila h2 { grid-column: 1 / span 6; }
-.presenta__nota { grid-column: 9 / -1; max-width: 34ch; }
 .datos-fila {
   display: flex; justify-content: space-between; gap: var(--medianil);
   margin-top: clamp(4rem, 8vw, 7.5rem);
@@ -80,8 +79,7 @@
 .datos-fila .t-head { line-height: 1; white-space: nowrap; }
 
 @media (max-width: 47.99em) {
-  .presenta__fila h2, .presenta__nota { grid-column: 1 / -1; }
-  .presenta__nota { margin-top: 1.25rem; }
+  .presenta__fila h2 { grid-column: 1 / -1; }
   .datos-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem var(--medianil); margin-top: 3rem; }
 }
 

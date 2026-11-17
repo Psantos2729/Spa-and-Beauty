@@ -28,15 +28,16 @@
 .cupon__datos div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 0.25rem 1rem; align-items: baseline; padding-block: 0.85rem; }
 .cupon__datos div + div { border-top: var(--punto) dotted var(--fondo); }
 .cupon__datos dt { font-size: var(--t-small); color: var(--nota); }
-.cupon__datos dd { font-family: var(--serif); font-size: var(--t-lead); font-weight: 500; line-height: 1.25; }
+.cupon__datos dd { font-family: var(--serif); font-size: var(--t-lead); font-weight: 500; line-height: 1.3; }
 .cupon__datos dd.vacio { color: var(--nota); font-style: italic; }
 @media (prefers-reduced-motion: no-preference) {
   .cupon__datos dd.is-nuevo { animation: sellar 520ms var(--ease-out); }
+  .armador__estado:not(:empty) { animation: sellar 240ms var(--ease-out); }
 }
 @keyframes sellar { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
 .cupon__hoy { display: grid; gap: 0.2rem; background: var(--fondo); padding: 0.85rem 1rem; }
-.cupon__hoy [data-hoy] { font-family: var(--serif); font-size: var(--t-lead); font-style: italic; line-height: 1.25; }
+.cupon__hoy [data-hoy] { font-family: var(--serif); font-size: var(--t-lead); font-style: italic; line-height: 1.3; }
 .cupon__pie { margin-top: auto; display: grid; grid-template-columns: 13rem 1fr; gap: 1.25rem; align-items: end; }
 .cupon__sello { width: 13rem; padding: 6px; background: var(--fondo); transform: rotate(-2deg); }
 .cupon__sello img { aspect-ratio: 4 / 3; width: 100%; height: auto; object-fit: cover; object-position: 100% 40%; }

@@ -45,7 +45,7 @@
     b.type = 'button';
     b.className = 'lomos__boton';
     b.setAttribute('aria-label', 'Abrir ' + nombres[j]);
-    b.addEventListener('click', function () { irA(j); });
+    b.addEventListener('click', function (e) { irA(j, e.detail === 0); });
     t.insertBefore(b, t.firstChild);
     return b;
   });
@@ -140,7 +140,7 @@
       if (!vivo) return;
       e.preventDefault();
       var j = +a.getAttribute('data-ir');
-      irA(j);
+      irA(j, e.detail === 0);
       if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
     });
   });

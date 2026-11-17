@@ -72,7 +72,7 @@
 
 /* Una sola foto que se mueve despacio: la del equipo */
 @media (prefers-reduced-motion: no-preference) {
-  .tapa__marco img { animation: deriva 16s var(--ease-in-out) infinite alternate; }
+  .tapa__marco img { animation: deriva 16s var(--ease-in-out) forwards; }
 }
 @keyframes deriva {
   from { transform: scale(1); }

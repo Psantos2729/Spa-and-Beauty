@@ -177,7 +177,7 @@
 .misiva__lamina { transform: translateY(var(--deriva, 0px)); }
 
 /* ---------- Pulsación y paso del ratón ---------- */
-.misiva__numero:active, .enlace:active { opacity: 0.7; }
+.misiva__numero:active { opacity: 0.7; }
 @media (hover: hover) and (pointer: fine) {
   .misiva__numero:hover { text-decoration-color: transparent; }
 }

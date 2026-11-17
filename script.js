@@ -129,7 +129,7 @@ var HORARIO = {
     var pie = id ? d.querySelector('[data-fundido-pie][data-para="' + id + '"]') : null;
     var elegir = id ? d.querySelector('[data-fundido-elegir][data-para="' + id + '"]') : null;
     var botones = elegir ? $('button', elegir) : [];
-    var i = 0, timer = 0, visible = true;
+    var i = 0, timer = 0, visible = true, manual = false;
 
     caja.classList.add('is-live');
     function ir(n) {
@@ -142,14 +142,14 @@ var HORARIO = {
     function para() { clearInterval(timer); timer = 0; }
     function sigue() {
       para();
-      if (reduce || d.hidden || !visible) return;
+      if (reduce || manual || d.hidden || !visible) return;
       timer = setInterval(function () { ir(i + 1); }, 5500);
     }
     ir(0);
     if (elegir) {
       elegir.hidden = false;
       botones.forEach(function (b, k) {
-        b.addEventListener('click', function () { ir(k); sigue(); });
+        b.addEventListener('click', function () { manual = true; ir(k); para(); });
       });
     }
     d.addEventListener('visibilitychange', sigue);
