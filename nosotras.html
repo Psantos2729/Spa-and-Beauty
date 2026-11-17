@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nosotras | Labella Salón + Spa, zona 13, Guatemala</title>
-<meta name="description" content="Conoce al equipo de Labella Salón + Spa, en la 15 Avenida A 4-59 de la zona 13 de Ciudad de Guatemala.">
+<meta name="description" content="El equipo de Labella Salón + Spa: un salón y spa en la 15 Avenida A 4-59 de la zona 13 que abre a las 6:30, con cabello, uñas, cejas, rostro, masajes y depilación en un mismo lugar.">
 <meta name="theme-color" content="#E9DDC8">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/nosotras.html">
@@ -13,23 +13,23 @@
 <meta property="og:locale" content="es_GT">
 <meta property="og:site_name" content="Labella Salón + Spa">
 <meta property="og:title" content="Nosotras | Labella Salón + Spa">
-<meta property="og:description" content="Conoce al equipo de Labella Salón + Spa, en la 15 Avenida A 4-59 de la zona 13 de Ciudad de Guatemala.">
+<meta property="og:description" content="El equipo de Labella el día que cortó la cinta vino del salón, en la zona 13 de Ciudad de Guatemala.">
 <meta property="og:url" content="https://psantos2729.github.io/Spa-and-Beauty/nosotras.html">
-<meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
+<meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/equipo.webp">
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/paginas.css">
+<link rel="stylesheet" href="css/nosotras.css">
 <script src="script.js" defer></script>
-<script src="js/paginas.js" defer></script>
+<script src="js/nosotras.js" defer></script>
 </head>
 <body>
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<!-- CABECERA (igual en todas las páginas; solo cambia dónde va) -->
+<!-- CABECERA (igual en todas las páginas; solo cambia dónde va aria-current="page") -->
 <header class="cabecera">
   <div class="cabecera__in envoltura">
     <a class="marca" href="index.html">
@@ -50,35 +50,131 @@
 
 <main id="contenido" tabindex="-1">
 
-<section class="titulo envoltura rejilla" aria-labelledby="titulo-pagina">
-  <h1 id="titulo-pagina" class="t-display" data-rise style="--i:0">El equipo<br> de Labella</h1>
-  <p class="t-lead titulo__apoyo" data-rise style="--i:1">Un salón y spa en la zona 13 que abre temprano, para que tu cita quepa antes de empezar el día.</p>
-</section>
+<!-- RETRATO: la foto de la inauguración, impresa, con la cinta que sigue fuera de ella -->
+<section class="retrato envoltura" aria-labelledby="titulo-nosotras">
+  <div class="retrato__texto">
+    <h1 id="titulo-nosotras" class="t-display" data-rise style="--i:0">El equipo de Labella</h1>
+    <p class="t-lead retrato__apoyo" data-rise style="--i:1">Somos el salón y spa de la 15 Avenida A, en la zona 13. Abrimos el salón cortando esta cinta vino, y abrimos temprano para que tu cita quepa antes del trabajo.</p>
+  </div>
 
-<section class="equipo envoltura rejilla" aria-labelledby="n-carta" data-reveal-group>
-  <figure class="equipo__foto" data-reveal>
-    <div class="foto foto--4x3"><img class="foto-equipo" src="assets/equipo.webp" alt="El equipo de Labella cortando la cinta vino en la inauguración del salón" width="722" height="568"></div>
-    <figcaption class="pie-foto">El día que cortamos la cinta.</figcaption>
-  </figure>
-  <div class="equipo__carta hoja feston-abajo">
-    <h2 id="n-carta" class="t-head serif" data-reveal>Hola, somos Labella</h2>
-    <p data-reveal>Abrimos el salón cortando una cinta, y desde ese día recibimos a nuestras clientas desde las 6:30 de la mañana.</p>
-    <p data-reveal>Aquí te atendemos el cabello, las uñas, las cejas y el rostro, y también te damos masajes y depilación con cera. Todo en un mismo lugar, sin que tengas que ir de un sitio a otro.</p>
-    <p data-reveal>Si no sabes por dónde empezar, cuéntanos qué buscas y te recomendamos.</p>
-    <p class="equipo__firma serif" data-reveal>El equipo de Labella</p>
+  <div class="retrato__escena" data-rise style="--i:2">
+    <figure class="retrato__lamina">
+      <div class="retrato__foto">
+        <span class="retrato__cinta retrato__cinta--izq" aria-hidden="true"></span>
+        <span class="retrato__cinta retrato__cinta--der" aria-hidden="true"></span>
+        <div class="foto retrato__marco">
+          <img src="assets/equipo.webp" alt="El equipo de Labella, de uniforme negro y con una compañera de blanco al centro, cortando la cinta vino en la puerta del salón" width="722" height="568" fetchpriority="high">
+        </div>
+      </div>
+      <figcaption class="retrato__pie">
+        <span>El día que cortamos la cinta, en la puerta del salón.</span>
+        <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Escribirnos por WhatsApp</a>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
-<section class="razones envoltura" aria-labelledby="n-razones" data-reveal-group>
-  <h2 id="n-razones" class="t-display" data-reveal>Por qué venir</h2>
-  <ul class="razones__lista">
-    <li data-reveal><h3 class="t-head serif">Todo en un lugar</h3><p>Cabello, uñas, cejas, limpieza facial, masajes y depilación con cera.</p></li>
-    <li data-reveal><h3 class="t-head serif">Desde temprano</h3><p>Abrimos a las 6:30 de lunes a viernes y a las 7:00 los sábados.</p></li>
-    <li data-reveal><h3 class="t-head serif">En la zona 13</h3><p>Nos encuentras en la 15 Avenida A 4-59. <a class="enlace" href="contacto.html">Cómo llegar</a></p></li>
-    <li data-reveal><h3 class="t-head serif">Productos que conocemos</h3><p>Trabajamos con Firenze y Chihtsai, y con Hubis Lab en la limpieza facial.</p></li>
-  </ul>
+<!-- CARTA: una carta del equipo en una hoja con borde ondulado y talón para cortar -->
+<section class="misiva envoltura rejilla" aria-labelledby="titulo-carta">
+  <div class="misiva__lamina misiva__lamina--izq">
+    <div data-reveal style="--i:1"><figure class="misiva__plato">
+      <div class="misiva__recorte">
+        <img src="assets/equipo.webp" alt="Detalle de la inauguración: las manos con las tijeras sobre la cinta vino" width="722" height="568" loading="lazy">
+      </div>
+      <figcaption class="pie-foto">Las tijeras sobre la cinta.</figcaption>
+    </figure></div>
+  </div>
+
+  <article class="misiva__hoja hoja feston-abajo" data-reveal-group>
+    <p class="misiva__membrete" data-reveal><img src="assets/logo.webp" alt="" width="147" height="124"><span>Labella Salón + Spa</span></p>
+    <h2 id="titulo-carta" class="t-head" data-reveal>Hola, somos Labella</h2>
+    <div class="misiva__cuerpo">
+      <p data-reveal>Somos un salón y spa en la 15 Avenida A 4-59, en la zona 13 de Ciudad de Guatemala. Te escribimos para contarte cómo trabajamos.</p>
+      <p data-reveal>Quisimos que todo estuviera en un mismo lugar: el cabello, las uñas, las cejas, la limpieza facial, los masajes y la depilación con cera. Así no tienes que ir de un sitio a otro.</p>
+      <p data-reveal>Abrimos <mark>desde las 6:30</mark> de lunes a viernes y desde las 7:00 los sábados, para que tu cita quepa antes de empezar el día.</p>
+      <p data-reveal>Trabajamos con productos que conocemos: Firenze y Chihtsai en el cabello, y Hubis Lab en la limpieza facial.</p>
+      <p data-reveal>El salón lo abrimos cortando una cinta vino, la que ves en la foto. Si no sabes por dónde empezar, cuéntanos qué buscas y te recomendamos.</p>
+    </div>
+    <p class="misiva__firma" data-reveal><span class="serif">El equipo de Labella</span><span class="t-small nota">Salón + Spa, zona 13</span></p>
+
+    <div class="talon misiva__talon" data-reveal>
+      <p class="misiva__corta">Recorta y escríbenos<br> <a class="misiva__numero serif" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>WhatsApp 3018&nbsp;1300</a></p>
+      <a class="enlace" href="tel:+50230181300">O llámanos al 3018 1300</a>
+    </div>
+  </article>
+
+  <div class="misiva__lamina misiva__lamina--der">
+    <div data-reveal style="--i:3"><figure class="misiva__plato">
+      <div class="foto foto--4x5">
+        <img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884" loading="lazy">
+      </div>
+      <figcaption class="pie-foto">Color y rizos, hechos en el salón.</figcaption>
+    </figure></div>
+  </div>
 </section>
 
+<!-- RAZONES: cuatro razones, cada una con su propia pieza -->
+<section class="razones campo-papel" aria-labelledby="titulo-razones">
+  <div class="envoltura">
+    <div class="razones__cabeza rejilla" data-reveal-group>
+      <h2 id="titulo-razones" class="t-display" data-reveal>Por qué venir<br> a Labella</h2>
+      <p class="razones__nota" data-reveal>Lo que encuentras al llegar a la 15 Avenida A 4-59, contado en cuatro piezas.</p>
+    </div>
+
+    <div class="razones__mesa rejilla">
+      <article class="razon razon--hora" data-reveal-group aria-labelledby="r-temprano">
+        <div class="cinta cinta--media" aria-hidden="true"></div>
+        <div class="razon__in">
+          <h3 id="r-temprano" class="t-head" data-reveal>Desde temprano</h3>
+          <p class="razon__cifra serif cifras" data-reveal>6:30</p>
+          <dl class="razon__horario" data-reveal>
+            <div><dt>Lunes a viernes</dt><dd class="cifras">6:30 a 17:00</dd></div>
+            <div><dt>Sábados</dt><dd class="cifras">7:00 a 16:00</dd></div>
+          </dl>
+          <p class="razon__hoy" data-reveal data-hoy>Lunes a viernes desde las 6:30, sábados desde las 7:00</p>
+        </div>
+      </article>
+
+      <article class="razon razon--todo" data-reveal-group aria-labelledby="r-lugar">
+        <h3 id="r-lugar" class="t-head" data-reveal>Todo en un mismo lugar</h3>
+        <ul class="razon__servicios" data-reveal>
+          <li>Cabello</li><li>Manicure y pedicure</li><li>Cejas</li>
+          <li>Limpieza facial</li><li>Masaje relajante</li><li>Depilación con cera</li>
+        </ul>
+        <div class="razon__fotos">
+          <figure class="razon__foto razon__foto--a" data-reveal>
+            <div class="foto foto--4x3"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy"></div>
+            <figcaption class="pie-foto">Manicure y pedicure en tono natural.</figcaption>
+          </figure>
+          <figure class="razon__foto razon__foto--b" data-reveal>
+            <div class="foto razon__cejas"><img src="assets/cejas.webp" alt="Diseño de cejas con pinza" width="724" height="303" loading="lazy"></div>
+            <figcaption class="pie-foto">Diseño y perfilado de cejas.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="razon razon--marcas" data-reveal-group aria-labelledby="r-productos">
+        <h3 id="r-productos" class="t-head" data-reveal>Productos que conocemos</h3>
+        <ul class="razon__marcas">
+          <li data-reveal><span class="serif">Firenze</span><span>En el cabello</span></li>
+          <li data-reveal><span class="serif">Chihtsai</span><span>En el cabello</span></li>
+          <li data-reveal><span class="serif">Hubis Lab</span><span>En la limpieza facial</span></li>
+        </ul>
+      </article>
+
+      <article class="razon razon--zona" data-reveal-group aria-labelledby="r-zona">
+        <h3 id="r-zona" class="t-head" data-reveal>En la zona 13</h3>
+        <p class="t-lead" data-reveal>15 Avenida A 4-59, zona&nbsp;13, Ciudad de Guatemala.</p>
+        <ul class="razon__enlaces" data-reveal>
+          <li><a class="enlace" href="contacto.html">Ver el mapa y el horario</a></li>
+          <li><a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Cómo llegar en Google Maps</a></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA: la tarjeta de respuesta (compartida) -->
 <section class="respuesta campo-vino" aria-labelledby="titulo-reserva">
   <div class="respuesta__in envoltura rejilla" data-reveal-group>
     <p class="respuesta__nota" data-reveal>Dinos qué servicio quieres y qué día te queda. Te confirmamos la hora por WhatsApp.</p>
@@ -95,6 +191,7 @@
 
 </main>
 
+<!-- PIE: el reverso de la tarjeta (igual en todas las páginas) -->
 <footer class="pie">
   <div class="cinta cinta--fina" aria-hidden="true"></div>
   <div class="pie__fondo envoltura rejilla">

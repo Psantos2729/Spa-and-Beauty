@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Servicios | Labella Salón + Spa, zona 13, Guatemala</title>
-<meta name="description" content="Cabello, manicure y pedicure, cejas, limpieza facial, masaje relajante y depilación con cera en Labella Salón + Spa, zona 13.">
+<meta name="description" content="La carta de Labella Salón + Spa en la zona 13: cabello, manicure y pedicure, cejas, limpieza facial, masaje relajante con piedras calientes y depilación con cera. Reserva cada servicio por WhatsApp.">
 <meta name="theme-color" content="#E9DDC8">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/servicios.html">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="es_GT">
 <meta property="og:site_name" content="Labella Salón + Spa">
 <meta property="og:title" content="Servicios | Labella Salón + Spa">
-<meta property="og:description" content="Cabello, manicure y pedicure, cejas, limpieza facial, masaje relajante y depilación con cera en Labella Salón + Spa, zona 13.">
+<meta property="og:description" content="Cabello, uñas, cejas, limpieza facial, masaje relajante y depilación con cera en la zona 13. Reserva cada servicio por WhatsApp.">
 <meta property="og:url" content="https://psantos2729.github.io/Spa-and-Beauty/servicios.html">
 <meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
 <script>document.documentElement.classList.add('js')</script>
@@ -21,15 +21,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/paginas.css">
+<link rel="stylesheet" href="css/servicios.css">
 <script src="script.js" defer></script>
-<script src="js/paginas.js" defer></script>
+<script src="js/servicios.js" defer></script>
 </head>
 <body>
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<!-- CABECERA (igual en todas las páginas; solo cambia dónde va) -->
+<!-- CABECERA (igual en todas las páginas; aquí aria-current va en Servicios) -->
 <header class="cabecera">
   <div class="cabecera__in envoltura">
     <a class="marca" href="index.html">
@@ -50,80 +50,215 @@
 
 <main id="contenido" tabindex="-1">
 
-<section class="titulo envoltura rejilla" aria-labelledby="titulo-pagina">
-  <h1 id="titulo-pagina" class="t-display" data-rise style="--i:0">Servicios de<br> salón y spa</h1>
-  <p class="t-lead titulo__apoyo" data-rise style="--i:1">Seis servicios en un mismo lugar. El precio depende del servicio y te lo confirmamos por WhatsApp antes de tu cita.</p>
-</section>
+<!-- PORTADA: la tapa de la carta, con su índice y su columna de precios -->
+<section class="tapa envoltura" aria-labelledby="titulo-servicios">
+  <div class="tapa__hoja feston-abajo">
+    <div class="cinta cinta--media" aria-hidden="true"></div>
+    <div class="tapa__in">
+      <div class="tapa__texto">
+        <h1 id="titulo-servicios" class="t-display" data-rise style="--i:0">Servicios de<br> salón y spa</h1>
+        <p class="t-lead tapa__apoyo" data-rise style="--i:1">Seis servicios en la 15 Avenida A de la zona&nbsp;13, del cabello a los pies. Elige el tuyo y te confirmamos precio y hora por WhatsApp.</p>
+        <div class="tapa__accion" data-rise style="--i:2">
+          <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Reservar por WhatsApp</a>
+          <p class="tapa__hoy"><span data-hoy>Lunes a viernes desde las 6:30, sábados desde las 7:00</span></p>
+        </div>
+        <figure class="tapa__foto" data-rise style="--i:3">
+          <div class="foto tapa__marco">
+            <img src="assets/equipo.webp" alt="El equipo de Labella sosteniendo la cinta vino el día de la inauguración del salón" width="722" height="568" fetchpriority="high">
+          </div>
+          <figcaption class="pie-foto">El equipo de Labella, el día que cortó la cinta.</figcaption>
+        </figure>
+      </div>
 
-<section class="servicio envoltura rejilla" aria-labelledby="s-cabello" data-reveal-group>
-  <div class="servicio__texto hoja">
-    <h2 id="s-cabello" class="t-display" data-reveal>Cabello</h2>
-    <p data-reveal>Cortes, color, peinados, tratamientos capilares y bioplastia capilar. Trabajamos con productos Firenze y Chihtsai.</p>
-    <ul class="servicio__lista" data-reveal>
-      <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia capilar</li>
-    </ul>
-    <div data-reveal><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar una cita de cabello en Labella">Reservar por WhatsApp</a></div>
-  </div>
-  <figure class="servicio__foto" data-reveal>
-    <div class="foto foto--4x5"><img src="assets/rizos.webp" alt="Rizos castaños con mechas doradas, hechos en el salón" width="661" height="884"></div>
-    <figcaption class="pie-foto">Color y rizos hechos en el salón.</figcaption>
-  </figure>
-</section>
-
-<section class="servicio servicio--inv envoltura rejilla" aria-labelledby="s-unas" data-reveal-group>
-  <div class="servicio__texto hoja">
-    <h2 id="s-unas" class="t-display" data-reveal>Manicure<br> y pedicure</h2>
-    <p data-reveal>Cuidado y diseño de uñas en manos y pies, con acabado limpio y natural.</p>
-    <div data-reveal><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar manicure y pedicure en Labella">Reservar por WhatsApp</a></div>
-  </div>
-  <figure class="servicio__foto" data-reveal>
-    <div class="foto foto--4x3"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy"></div>
-    <figcaption class="pie-foto">Manicure y pedicure en tono natural.</figcaption>
-  </figure>
-</section>
-
-<section class="servicio envoltura rejilla" aria-labelledby="s-cejas" data-reveal-group>
-  <div class="servicio__texto hoja">
-    <h2 id="s-cejas" class="t-display" data-reveal>Cejas</h2>
-    <p data-reveal>Diseño y perfilado para enmarcar tu mirada.</p>
-    <div data-reveal><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar diseño de cejas en Labella">Reservar por WhatsApp</a></div>
-  </div>
-  <figure class="servicio__foto" data-reveal>
-    <div class="foto foto--3x2"><img class="foto-cejas" src="assets/cejas.webp" alt="Diseño de cejas con pinza" width="724" height="303" loading="lazy"></div>
-    <figcaption class="pie-foto">Diseño y perfilado de cejas.</figcaption>
-  </figure>
-</section>
-
-<section class="masaje campo-oscuro" aria-labelledby="s-masaje">
-  <div class="envoltura rejilla" data-reveal-group>
-    <div class="masaje__texto">
-      <h2 id="s-masaje" class="t-display" data-reveal>Masaje relajante</h2>
-      <p class="t-lead" data-reveal>45 minutos de masaje con piedras calientes. Confirma disponibilidad al reservar.</p>
-    </div>
-    <div class="masaje__promo" data-reveal>
-      <p class="serif masaje__cifra cifras">3 por Q500</p>
-      <p>Promoción en masajes relajantes.</p>
-      <a class="btn btn--papel" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar la promoción de masajes 3 por Q500 en Labella">Reservar la promoción</a>
+      <nav class="indice" aria-label="Servicios de la carta" data-rise style="--i:2">
+        <p class="indice__cabeza"><span>Servicio</span><span>Precio</span></p>
+        <ul>
+          <li><a class="indice__fila" href="#cabello" data-ir="0"><span class="indice__nombre">Cabello</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio">Por WhatsApp</span><span class="indice__detalle">Cortes, color, peinados, tratamientos y bioplastia</span></a></li>
+          <li><a class="indice__fila" href="#unas" data-ir="1"><span class="indice__nombre">Manicure y pedicure</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio">Por WhatsApp</span><span class="indice__detalle">Cuidado y diseño de uñas en manos y pies</span></a></li>
+          <li><a class="indice__fila" href="#cejas" data-ir="2"><span class="indice__nombre">Cejas</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio">Por WhatsApp</span><span class="indice__detalle">Diseño y perfilado</span></a></li>
+          <li><a class="indice__fila" href="#facial" data-ir="3"><span class="indice__nombre">Limpieza facial</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio">Por WhatsApp</span><span class="indice__detalle">Nueva, con productos Hubis Lab</span></a></li>
+          <li><a class="indice__fila" href="#masaje" data-ir="4"><span class="indice__nombre">Masaje relajante</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio indice__precio--promo cifras">3 por Q500</span><span class="indice__detalle">45 minutos con piedras calientes</span></a></li>
+          <li><a class="indice__fila" href="#cera" data-ir="5"><span class="indice__nombre">Depilación con cera</span><span class="indice__puntos" aria-hidden="true"></span><span class="indice__precio">Por WhatsApp</span><span class="indice__detalle">Pregúntanos por las zonas</span></a></li>
+        </ul>
+      </nav>
     </div>
   </div>
 </section>
 
-<section class="pareja envoltura rejilla" aria-label="Rostro y cuerpo" data-reveal-group>
-  <div class="hoja pareja__hoja" data-reveal>
-    <h2 class="t-display">Limpieza facial</h2>
-    <p>Nueva en el salón. La hacemos con productos Hubis Lab.</p>
-    <a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar una limpieza facial en Labella">Reservar por WhatsApp</a>
-  </div>
-  <div class="hoja pareja__hoja" data-reveal>
-    <h2 class="t-display">Depilación<br> con cera</h2>
-    <p>Pregúntanos por las zonas que trabajamos.</p>
-    <a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero preguntar por la depilación con cera en Labella">Reservar por WhatsApp</a>
+<!-- LA CARTA: tarjetas que se pliegan en lomos al bajar (escena fijada en escritorio).
+     Sin JavaScript, con movimiento reducido o en el teléfono: tarjetas apiladas. -->
+<section class="scene carta-lomos campo-oscuro" id="carta" data-scene="carta-lomos" aria-labelledby="titulo-carta">
+  <div class="scene-stage lomos__escenario">
+    <div class="lomos__in envoltura">
+      <h2 id="titulo-carta" class="t-display lomos__titulo" data-reveal>La carta completa</h2>
+
+      <div class="lomos__mazo">
+
+        <article class="tarjeta tarjeta--tono-a" id="cabello" aria-labelledby="t-cabello">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Cabello</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-cabello" class="t-head">Cabello</h3>
+              <p class="t-lead">Cortes, color, peinados, tratamientos capilares y bioplastia capilar.</p>
+              <ul class="tarjeta__lista">
+                <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia capilar</li>
+              </ul>
+              <p>Trabajamos con productos Firenze y Chihtsai. El precio depende del servicio y de tu cabello: te lo confirmamos por WhatsApp.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar una cita de cabello en Labella Salón + Spa">Reservar cabello</a></div>
+            </div>
+            <figure class="tarjeta__lamina">
+              <div class="foto tarjeta__foto tarjeta__foto--rizos"><img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884" loading="lazy"></div>
+              <figcaption class="pie-foto">Color y rizos hechos en el salón.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="tarjeta tarjeta--tono-b" id="unas" aria-labelledby="t-unas">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Manicure y pedicure</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-unas" class="t-head">Manicure y pedicure</h3>
+              <p class="t-lead">Cuidado y diseño de uñas en manos y pies, con acabado limpio y natural.</p>
+              <ul class="tarjeta__lista">
+                <li>Manicure</li><li>Pedicure</li><li>Diseño de uñas</li>
+              </ul>
+              <p>Dinos si quieres manos, pies o los dos, y te confirmamos el precio por WhatsApp.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar manicure y pedicure en Labella Salón + Spa">Reservar uñas</a></div>
+            </div>
+            <figure class="tarjeta__lamina">
+              <div class="foto tarjeta__foto tarjeta__foto--manos"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy"></div>
+              <figcaption class="pie-foto">Manicure y pedicure en tono natural.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="tarjeta tarjeta--tono-c" id="cejas" aria-labelledby="t-cejas">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Cejas</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-cejas" class="t-head">Cejas</h3>
+              <p class="t-lead">Diseño y perfilado de cejas para enmarcar tu mirada.</p>
+              <ul class="tarjeta__lista">
+                <li>Diseño de cejas</li><li>Perfilado</li>
+              </ul>
+              <p>Abrimos desde las 6:30, así que tu cita puede ir antes del trabajo. Te confirmamos el precio por WhatsApp.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar diseño y perfilado de cejas en Labella Salón + Spa">Reservar cejas</a></div>
+            </div>
+            <div class="tarjeta__lamina tarjeta__lamina--doble">
+              <div class="tarjeta__lamina--tipo tarjeta__hora">
+                <p class="t-head cifras">6:30</p>
+                <p>Abrimos a esa hora de lunes a viernes. Los sábados, a las 7:00.</p>
+              </div>
+              <figure>
+                <div class="foto tarjeta__foto tarjeta__foto--cejas"><img src="assets/cejas.webp" alt="Perfilado de cejas con pinza" width="724" height="303" loading="lazy"></div>
+                <figcaption class="pie-foto">Diseño y perfilado de cejas.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="tarjeta tarjeta--tono-a" id="facial" aria-labelledby="t-facial">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Limpieza facial</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-facial" class="t-head">Limpieza facial</h3>
+              <p class="t-lead">Nueva en el salón. La hacemos con productos Hubis Lab.</p>
+              <ul class="tarjeta__lista">
+                <li>Limpieza facial</li><li>Productos Hubis Lab</li>
+              </ul>
+              <p>Escríbenos qué día te queda y te confirmamos precio y hora por WhatsApp.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar una limpieza facial en Labella Salón + Spa">Reservar limpieza facial</a></div>
+            </div>
+            <div class="tarjeta__lamina tarjeta__lamina--tipo">
+              <p class="t-head">Hubis Lab</p>
+              <p>Los productos de nuestra limpieza facial.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="tarjeta tarjeta--tono-b" id="masaje" aria-labelledby="t-masaje">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Masaje relajante</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-masaje" class="t-head">Masaje relajante</h3>
+              <p class="t-lead">45 minutos de masaje con piedras calientes.</p>
+              <ul class="tarjeta__lista">
+                <li>45 minutos</li><li>Piedras calientes</li>
+              </ul>
+              <p>Está en promoción: tres masajes por Q500. Confirma la disponibilidad al reservar.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero reservar la promoción de masaje relajante 3 por Q500 en Labella Salón + Spa">Reservar la promoción</a></div>
+            </div>
+            <div class="tarjeta__lamina tarjeta__lamina--tipo tarjeta__lamina--promo">
+              <p class="t-display cifras">3 por Q500</p>
+              <p>Promoción en masajes relajantes. Sujeta a disponibilidad.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="tarjeta tarjeta--tono-c" id="cera" aria-labelledby="t-cera">
+          <div class="cinta cinta--media" aria-hidden="true"></div>
+          <div class="tarjeta__lomo" aria-hidden="true"><span class="tarjeta__nombre">Depilación con cera</span></div>
+          <div class="tarjeta__cuerpo">
+            <div class="tarjeta__texto">
+              <h3 id="t-cera" class="t-head">Depilación con cera</h3>
+              <p class="t-lead">Depilación con cera. Pregúntanos por las zonas que trabajamos.</p>
+              <ul class="tarjeta__lista">
+                <li>Con cera</li><li>Zonas a consultar</li>
+              </ul>
+              <p>Escríbenos la zona que te interesa y te decimos si la trabajamos y cuánto cuesta.</p>
+              <div class="tarjeta__accion"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero preguntar por la depilación con cera en Labella Salón + Spa">Preguntar por la cera</a></div>
+            </div>
+            <div class="tarjeta__lamina tarjeta__lamina--tipo">
+              <p class="t-head">¿Qué zona?</p>
+              <p>Cuéntanos por WhatsApp y te respondemos.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="lomos__pie">
+        <p class="t-lead"><span data-lomos-cuenta>Seis servicios en la carta.</span></p>
+        <p class="lomos__ayuda">El precio de cada uno te lo confirmamos por WhatsApp.</p>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- EL PRECIO: el vale de la promoción junto al antes y después -->
+<section class="precio envoltura" aria-labelledby="titulo-precio">
+  <div class="precio__in rejilla" data-reveal-group>
+    <div class="precio__texto">
+      <h2 id="titulo-precio" class="t-display" data-reveal>¿Cuánto<br> cuesta?</h2>
+      <p class="t-lead" data-reveal>El precio depende del servicio y de tu cabello. Escríbenos qué quieres hacerte y te lo confirmamos por WhatsApp antes de tu cita.</p>
+      <div class="precio__lugar" data-reveal>
+        <div class="vale">
+          <p class="vale__cifra serif t-display cifras">3 por Q500</p>
+          <p class="vale__texto">El único precio fijo de la carta: masajes relajantes de 45 minutos con piedras calientes, en promoción. Confirma disponibilidad al reservar.</p>
+        </div>
+      </div>
+      <div data-reveal><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero saber el precio de un servicio en Labella Salón + Spa">Preguntar un precio por WhatsApp</a></div>
+    </div>
+    <figure class="precio__foto" data-reveal>
+      <div class="foto precio__marco">
+        <img src="assets/antes-despues.webp" alt="Cabello rubio largo antes y después de un tratamiento capilar, de espaldas, lado a lado" width="707" height="532" loading="lazy">
+        <span class="precio__et precio__et--a" aria-hidden="true">Antes</span>
+        <span class="precio__et precio__et--d" aria-hidden="true">Después</span>
+      </div>
+      <figcaption class="pie-foto">Tratamiento capilar, antes y después. Pregúntanos también por la bioplastia.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- RESERVA: la tarjeta de respuesta (compartida) -->
 <section class="respuesta campo-vino" aria-labelledby="titulo-reserva">
   <div class="respuesta__in envoltura rejilla" data-reveal-group>
-    <p class="respuesta__nota" data-reveal>Dinos qué servicio quieres y qué día te queda. Te confirmamos la hora por WhatsApp.</p>
+    <p class="respuesta__nota" data-reveal>¿No sabes por dónde empezar? Cuéntanos qué buscas y te recomendamos un servicio.</p>
     <div class="respuesta__lugar" data-reveal>
       <div class="respuesta__tarjeta">
         <div class="cinta" aria-hidden="true"></div>
@@ -137,6 +272,7 @@
 
 </main>
 
+<!-- PIE: el reverso de la tarjeta (igual en todas las páginas) -->
 <footer class="pie">
   <div class="cinta cinta--fina" aria-hidden="true"></div>
   <div class="pie__fondo envoltura rejilla">

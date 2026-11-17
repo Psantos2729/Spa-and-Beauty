@@ -1,0 +1,230 @@
+/* ==========================================================================
+   Galería (galeria.html): solo lo propio de esta página.
+   Idea: las fotos del salón son impresiones con su etiqueta colgada debajo.
+   Usa los tokens y piezas de styles.css; no redefine colores ni tamaños.
+   ========================================================================== */
+
+/* ---------- Etiquetas: pares de color que se turnan ---------- */
+.etiqueta--papel { background: var(--papel); color: var(--tinta); }
+.etiqueta--oscura { background: var(--espresso); color: var(--marfil); --foco: var(--marfil); }
+/* la cinta vino corre por el borde superior de la etiqueta */
+.etiqueta--cinta { position: relative; }
+.etiqueta--cinta::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 0.5rem;
+  background: var(--cinta);
+  -webkit-mask: var(--mascara-cinta) 0 0 / calc(var(--barra) * 2) 100% repeat-x;
+  mask: var(--mascara-cinta) 0 0 / calc(var(--barra) * 2) 100% repeat-x;
+}
+
+/* La tira de datos bajo cada foto (también bajo el antes y después) */
+.tira__etiqueta {
+  display: flex; flex-direction: column; justify-content: center; gap: 0.2rem;
+  min-height: 6rem; padding: 0.875rem 1rem;
+  font-size: var(--t-small); line-height: 1.35;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.etiqueta--cinta.tira__etiqueta { padding-top: 1.375rem; }
+.tira__fila { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 1rem; }
+.tira__fila--fuerte { font-weight: 500; }
+
+/* ---------- Vitrina: la tarjeta junto a la foto de antes y después ---------- */
+.vitrina {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--medianil);
+  min-height: min(calc(100svh - 5rem - var(--margen)), 60rem);
+  padding-bottom: var(--margen);
+}
+.vitrina__tarjeta {
+  --debajo: var(--fondo);
+  display: flex; flex-direction: column;
+  background: var(--papel);
+  text-align: center;
+}
+.vitrina__cuerpo {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.5rem;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--relleno) 1.5rem;
+}
+.vitrina h1 { max-width: 12ch; }
+.vitrina__apoyo { max-width: 36ch; }
+.vitrina__guia { max-width: 34ch; }
+.vitrina__enlaces {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1.75rem;
+  padding: 0 var(--relleno) 1.75rem;
+}
+
+.vitrina__sala {
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1.5rem, 3.5vw, 3rem);
+}
+/* La mitad de la foto mide 353 × 532: el marco no pasa de ~1,2 veces su tamaño */
+.vitrina__marco {
+  width: min(100%, 26rem, calc((100svh - 5rem - var(--margen) - 6rem - 6rem) * 0.6645));
+  min-width: min(100%, 17rem);
+}
+/* Sin JavaScript se ve la foto doble entera (707 px de ancho): el marco crece para ella */
+.vitrina__marco:has(.ba:not(.is-live)) { width: min(100%, 34rem); }
+
+/* ---------- Antes y después ---------- */
+/* Sin JavaScript: la foto doble entera (antes a la izquierda, después a la derecha). */
+.ba { position: relative; overflow: hidden; background: var(--espresso); }
+.ba img { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; -webkit-user-drag: none; }
+.ba__clip, .ba__asa { display: none; }
+.ba__et {
+  position: absolute; bottom: 0.75rem; z-index: 2;
+  padding: 0.25rem 0.75rem; background: var(--tinta); color: var(--papel);
+  font-size: var(--t-small); pointer-events: none;
+}
+.ba__et--a { left: 0.75rem; }
+.ba__et--d { right: 0.75rem; }
+
+/* Con JavaScript (galeria.js pone .is-live): una sola mitad a la vez y una línea que se mueve. */
+.ba.is-live {
+  aspect-ratio: 353.5 / 532;
+  touch-action: pan-y;
+  cursor: ew-resize;
+  -webkit-user-select: none; user-select: none;
+}
+.ba.is-live img { position: absolute; top: 0; left: 0; width: 200%; max-width: none; height: 100%; object-fit: cover; }
+.ba.is-live .ba__base { transform: translateX(-50%); }
+.ba.is-live .ba__clip, .ba.is-live .ba__asa { display: block; position: absolute; inset: 0; will-change: transform; }
+.ba__clip { overflow: hidden; transform: translateX(-50%); }
+.ba__contra { position: absolute; inset: 0; transform: translateX(50%); will-change: transform; }
+.ba__asa { pointer-events: none; transform: translateX(-50%); z-index: 3; }
+.ba__asa::before { content: ""; position: absolute; top: 0; bottom: 0; right: -2px; width: 4px; background: var(--papel); }
+.ba__asa i {
+  position: absolute; right: -28px; top: 50%; width: 56px; height: 56px; margin-top: -28px;
+  display: grid; place-items: center;
+  background: var(--papel); color: var(--tinta);
+  transition: transform var(--t-press) var(--ease-out);
+}
+.ba__asa svg { width: 24px; height: 24px; }
+.ba.is-drag .ba__asa i { transform: scale(0.92); }
+.ba.suave .ba__clip, .ba.suave .ba__contra, .ba.suave .ba__asa { transition: transform 900ms var(--ease-in-out); }
+.ba.rapido .ba__clip, .ba.rapido .ba__contra, .ba.rapido .ba__asa { transition: transform 320ms var(--ease-out); }
+/* El control real: invisible pero con foco de teclado; el arrastre lo lleva galeria.js */
+.ba__rango {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  opacity: 0; pointer-events: none;
+  -webkit-appearance: none; appearance: none; background: transparent;
+}
+.ba__rango:focus-visible ~ .ba__asa i { outline: 3px solid var(--marfil); outline-offset: 3px; }
+.ba__rango:focus-visible ~ .ba__asa::before { background: var(--marfil); }
+@media (hover: hover) and (pointer: fine) {
+  .ba.is-live:hover .ba__asa i { transform: scale(1.06); }
+  .ba.is-live.is-drag .ba__asa i { transform: scale(0.92); }
+}
+
+/* ---------- Fotos con su etiqueta ---------- */
+.fotos { padding-top: var(--seccion); padding-bottom: calc(var(--seccion) / 2); }
+.fotos__cabeza { align-items: end; }
+.fotos__cabeza h2 { grid-column: 1 / span 6; }
+.fotos__nota { grid-column: 9 / -1; max-width: 34ch; }
+
+.fotos__rejilla {
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  column-gap: 0.75rem; row-gap: 1.75rem;
+}
+/* Cada figura ocupa dos filas de la rejilla (foto y etiqueta) para que todas las etiquetas
+   de una fila empiecen a la misma altura. */
+.tira { grid-row: span 2; display: grid; grid-template-rows: subgrid; row-gap: 0; }
+.tira__foto { aspect-ratio: 1 / 1; }
+.tira__foto img { position: absolute; inset: 0; transition: transform 1.2s var(--ease-soft); }
+.tira--ancha { grid-column: span 2; }
+.tira--ancha .tira__foto { aspect-ratio: auto; min-height: 100%; }
+
+/* Encuadres: cada recorte muestra algo distinto y nunca pasa de ~1,3 veces el tamaño real */
+.tira--rizos img { object-position: 50% 28%; }
+.tira--equipo img { left: -2%; width: 104%; object-position: 50% 18%; }
+.tira--cejas img { object-position: 64% 50%; }
+.tira--manicure img { object-position: 30% 50%; }
+/* De cerca: las manos y las tijeras sobre la cinta (zona de unos 300 px de la foto del equipo) */
+.tira--cinta img { inset: auto; width: 240%; height: auto; max-width: none; left: -79%; top: -26%; object-fit: fill; }
+/* De cerca: las puntas en rizos (zona de unos 480 px de la parte baja de la foto) */
+.tira--detalle img { inset: auto; width: 138%; height: auto; max-width: none; left: -14%; top: -82%; object-fit: fill; }
+
+@media (hover: hover) and (pointer: fine) {
+  .tira:hover .tira__foto img { transform: scale(1.03); }
+}
+
+/* ---------- También en Labella: etiquetas colgadas de la cinta ---------- */
+.etiquetas { padding-block: calc(var(--seccion) / 2); }
+.etiquetas__cabeza { align-items: end; }
+.etiquetas__cabeza h2 { grid-column: 1 / span 6; }
+.etiquetas__nota { grid-column: 9 / -1; max-width: 34ch; }
+.etiquetas__cuerda { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.etiquetas__lista {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--medianil);
+  align-items: start;
+  margin-top: -1.25rem; /* las etiquetas cuelgan pegadas a la cinta */
+}
+.etiquetas__item:nth-child(1) { grid-column: 2 / span 3; }
+.etiquetas__item:nth-child(2) { grid-column: 5 / span 4; margin-top: 2.5rem; }
+.etiquetas__item:nth-child(3) { grid-column: 9 / span 3; margin-top: 1rem; }
+
+/* Forma de etiqueta: esquinas superiores cortadas y un ojal para el cordón */
+.etiqueta {
+  position: relative;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 0.875rem;
+  padding: calc(var(--relleno) + 2.25rem) var(--relleno) var(--relleno);
+  clip-path: polygon(22% 0, 78% 0, 100% 3.5rem, 100% 100%, 0 100%, 0 3.5rem);
+  transform: rotate(-1.5deg); transform-origin: 50% 0;
+  transition: transform 600ms var(--ease-out);
+}
+.etiquetas__item:nth-child(2) .etiqueta { transform: rotate(1.25deg); }
+.etiquetas__item:nth-child(3) .etiqueta { transform: rotate(-0.75deg); }
+.etiqueta::before {
+  content: ""; position: absolute; left: 50%; top: 1.25rem;
+  width: 1.25rem; height: 1.25rem; margin-left: -0.625rem; border-radius: 50%;
+  background: var(--fondo);
+}
+.etiqueta h3 { line-height: 1.05; }
+.etiqueta .enlace { margin-top: auto; }
+.etiqueta--oscura strong { font-weight: 500; }
+@media (hover: hover) and (pointer: fine) {
+  .etiquetas__item:hover .etiqueta { transform: rotate(0deg); }
+}
+
+/* ---------- Tableta ---------- */
+@media (max-width: 59.99em) {
+  .vitrina { grid-template-columns: 1fr; min-height: 0; gap: 0; }
+  .vitrina__tarjeta { order: -1; }
+  .vitrina__sala { padding: 2rem 1rem 2.5rem; }
+  .vitrina__marco { width: min(100%, 24rem); }
+
+  .fotos__rejilla { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tira--ancha .tira__foto { aspect-ratio: 2 / 1; }
+  .tira--rizos { order: 1; }
+  .tira--manicure { order: 2; }
+  .tira--equipo { order: 3; }
+  .tira--cinta { order: 4; }
+  .tira--detalle { order: 5; }
+  .tira--cejas { order: 6; }
+
+  .etiquetas__item:nth-child(1) { grid-column: 1 / span 4; }
+  .etiquetas__item:nth-child(2) { grid-column: 5 / span 4; }
+  .etiquetas__item:nth-child(3) { grid-column: 9 / span 4; }
+}
+
+/* ---------- Teléfono ---------- */
+@media (max-width: 47.99em) {
+  .vitrina__tarjeta .cinta { height: 2.5rem; }
+  .vitrina__enlaces { flex-direction: column; align-items: center; }
+  .vitrina__sala { padding: 1.5rem 0.75rem 2rem; }
+
+  .fotos__cabeza h2, .fotos__nota,
+  .etiquetas__cabeza h2, .etiquetas__nota { grid-column: 1 / -1; }
+  .fotos__nota, .etiquetas__nota { margin-top: 1.25rem; }
+  .fotos__rejilla { column-gap: 0.5rem; row-gap: 1.25rem; }
+  .tira__etiqueta { min-height: 0; padding: 0.75rem; }
+  .tira__fila { flex-direction: column; }
+
+  .etiquetas__lista { grid-template-columns: 1fr; row-gap: 1.5rem; margin-top: -1rem; padding-inline: 0.5rem; }
+  .etiquetas__item:nth-child(n) { grid-column: 1; margin-top: 0; }
+  .etiquetas__item:nth-child(2) { margin-left: 1.5rem; }
+  .etiquetas__item:nth-child(3) { margin-right: 1.5rem; }
+}

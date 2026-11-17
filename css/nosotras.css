@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Nosotras (nosotras.html): solo lo propio de esta página.
+   Usa los tokens y piezas de styles.css; no redefine colores ni tamaños.
+   ========================================================================== */
+
+/* ---------- Retrato: la foto de la inauguración, impresa ---------- */
+.retrato {
+  display: grid; justify-items: center;
+  padding-top: clamp(1.5rem, 3.5vw, 3rem);
+  padding-bottom: calc(var(--seccion) / 2);
+  text-align: center;
+  overflow: clip; /* la cinta llega a los bordes de la pantalla y no más */
+}
+.retrato__texto { display: grid; justify-items: center; gap: 1.25rem; max-width: 52rem; }
+.retrato__apoyo { max-width: 46ch; }
+.retrato__escena { width: 100%; display: grid; justify-items: center; margin-top: clamp(2rem, 4vw, 3rem); }
+
+/* La lámina: la foto con su margen de papel. 722px de ancho real: el marco no pasa de 900px (1,25x). */
+.retrato__lamina {
+  position: relative; isolation: isolate;
+  width: 100%; max-width: calc(56.25rem + 2 * var(--relleno-foto));
+  --relleno-foto: clamp(0.75rem, 1.4vw, 1.25rem);
+  background: var(--papel);
+  padding: var(--relleno-foto) var(--relleno-foto) 0;
+  text-align: left;
+}
+.retrato__foto { position: relative; }
+.retrato__marco { aspect-ratio: 5 / 4; }
+.retrato__marco img { object-position: 100% 50%; } /* quita la franja oscura del borde izquierdo */
+
+/* La cinta de la foto sigue fuera de ella, a la altura de la cinta real (42% de la foto) */
+.retrato__cinta {
+  position: absolute; z-index: -1; top: 41%;
+  height: clamp(10px, 1.1vw, 16px); width: 100vw;
+  background: var(--cinta);
+}
+.retrato__cinta--izq { right: 50%; transform-origin: 100% 50%; }
+.retrato__cinta--der { left: 50%; transform-origin: 0% 50%; }
+
+.retrato__pie {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem 2rem;
+  padding: 1.25rem 0 var(--relleno-foto);
+}
+.retrato__pie span { font-family: var(--serif); font-size: var(--t-lead); line-height: 1.3; font-style: italic; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* la cinta se tiende hacia los lados al cargar */
+  .js .retrato__cinta { transform: scaleX(0); animation: tender 1600ms var(--ease-out) 700ms forwards; }
+  /* la foto se acerca muy despacio: la imagen que se mueve */
+  .js .retrato__marco img { transform: scale(1.06); animation: acercar 9s var(--ease-soft) 200ms forwards; }
+}
+@keyframes tender { to { transform: scaleX(1); } }
+@keyframes acercar { to { transform: scale(1); } }
+
+@media (max-width: 47.99em) {
+  .retrato { text-align: left; justify-items: stretch; }
+  .retrato__texto { justify-items: start; }
+  .retrato__escena { margin-top: 1.75rem; }
+  .retrato__lamina { --relleno-foto: var(--margen); width: calc(100% + 2 * var(--margen)); max-width: none; margin-inline: calc(var(--margen) * -1); }
+  .retrato__marco { aspect-ratio: 4 / 3; }
+  .retrato__pie { flex-direction: column; align-items: stretch; }
+  .retrato__pie .btn { width: 100%; }
+}
+
+/* ---------- Carta: la hoja del equipo y dos fotos sueltas ---------- */
+.misiva { padding-block: calc(var(--seccion) / 2); align-items: start; }
+.misiva__hoja {
+  --debajo: var(--fondo);
+  grid-column: 4 / span 6;
+  padding: clamp(1.5rem, 4.2vw, 3.75rem);
+  --relleno: clamp(1.5rem, 4.2vw, 3.75rem);
+}
+.misiva__membrete {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-family: var(--serif); font-weight: 600; font-size: var(--t-lead); line-height: 1;
+}
+.misiva__membrete img { width: 2.75rem; height: auto; }
+.misiva__hoja h2 { margin-top: 1.75rem; }
+.misiva__cuerpo { display: grid; gap: 1.1rem; margin-top: 1.5rem; max-width: 60ch; }
+.misiva mark { background: var(--fondo); color: inherit; padding: 0 0.2em; }
+.misiva__firma { display: grid; gap: 0.15rem; margin-top: 2rem; }
+.misiva__firma .serif { font-size: var(--t-head); font-style: italic; line-height: 1.1; }
+
+.misiva__talon { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 0.5rem 2rem; }
+.misiva__corta { line-height: 1.3; }
+.misiva__numero {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: var(--t-head); line-height: 1.1; text-decoration-thickness: 0.05em; text-underline-offset: 0.18em;
+  transition: text-decoration-color var(--t-hover) ease;
+}
+
+/* Las fotos sueltas, como láminas pegadas junto a la carta */
+.misiva__lamina { position: relative; }
+.misiva__lamina--izq { grid-column: 1 / span 3; margin-top: clamp(3rem, 9vw, 9rem); justify-self: end; width: 100%; max-width: 18.75rem; }
+.misiva__lamina--der { grid-column: 10 / -1; margin-top: clamp(14rem, 30vw, 26rem); justify-self: start; width: 100%; max-width: 18.75rem; }
+.misiva__plato { background: var(--papel); padding: 0.75rem 0.75rem 0.25rem; }
+.misiva__lamina--izq .misiva__plato { transform: rotate(-2.5deg); }
+.misiva__lamina--der .misiva__plato { transform: rotate(2deg); }
+.misiva__plato .pie-foto { margin-top: 0.5rem; padding-bottom: 0.5rem; }
+/* recorte de la foto del equipo: las tijeras sobre la cinta (zona de 240×300 px de la foto, a menos de 1,3x) */
+.misiva__recorte { position: relative; overflow: hidden; aspect-ratio: 4 / 5; background: var(--espresso); }
+.misiva__recorte img { width: 300.8%; max-width: none; height: auto; margin-left: -125%; margin-top: -50%; }
+
+@media (max-width: 59.99em) {
+  .misiva__hoja { grid-column: 1 / -1; grid-row: 1; }
+  .misiva__lamina--izq, .misiva__lamina--der { grid-row: 2; margin-top: 2.5rem; max-width: 16rem; }
+  .misiva__lamina--izq { grid-column: 1 / span 6; justify-self: end; margin-right: 1rem; }
+  .misiva__lamina--der { grid-column: 7 / -1; justify-self: start; margin-left: 1rem; margin-top: 4rem; }
+}
+@media (max-width: 47.99em) {
+  .misiva__hoja { margin-inline: calc(var(--margen) * -1); --relleno: var(--margen); padding-inline: var(--margen); }
+  .misiva__lamina--izq, .misiva__lamina--der { max-width: none; justify-self: stretch; margin-inline: 0; }
+  .misiva__talon { flex-direction: column; align-items: stretch; }
+  .misiva__lamina--izq .misiva__plato { transform: rotate(-1.5deg); }
+  .misiva__lamina--der .misiva__plato { transform: rotate(1.5deg); }
+}
+
+/* ---------- Razones: cuatro piezas distintas sobre el papel ---------- */
+.razones { padding-block: calc(var(--seccion) / 2); }
+.razones__cabeza { align-items: end; }
+.razones__cabeza h2 { grid-column: 1 / span 7; }
+.razones__nota { grid-column: 9 / -1; max-width: 32ch; }
+.razones__mesa { margin-top: clamp(3rem, 6vw, 5rem); row-gap: clamp(6rem, 8vw, 6.5rem); align-items: start; }
+
+.razon h3 { margin-bottom: 1rem; }
+
+/* La tarjeta del horario: el reverso oscuro de la tarjeta de cita */
+.razon--hora { grid-column: 1 / span 5; grid-row: 1 / span 2; align-self: stretch; display: flex; flex-direction: column; background: var(--espresso); color: var(--marfil); --foco: var(--marfil); }
+.razon--hora .cinta { background: var(--marfil); }
+.razon__in { flex: 1; padding: var(--relleno); display: flex; flex-direction: column; gap: 1.25rem; }
+.razon__hoy { margin-top: auto; padding-top: 1rem; }
+.razon--hora h3 { margin-bottom: 0; }
+.razon__cifra { font-size: var(--t-display); line-height: 0.9; letter-spacing: -0.03em; margin-block: auto; }
+.razon__horario { display: grid; gap: 0.25rem; }
+.razon__horario div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 0.6rem; }
+.razon__horario div + div { border-top: var(--punto) dotted var(--fondo); }
+.razon__horario dd { font-weight: 500; }
+.razon__hoy { font-size: var(--t-lead); font-family: var(--serif); font-style: italic; }
+
+/* Todo en un lugar: la lista corrida y dos fotos de distinto formato */
+.razon--todo { grid-column: 7 / -1; }
+.razon__servicios { display: flex; flex-wrap: wrap; gap: 0.5rem; font-weight: 500; }
+.razon__servicios li { background: var(--fondo); padding: 0.45rem 0.9rem; }
+.razon__fotos { display: grid; grid-template-columns: 5fr 7fr; gap: var(--medianil); margin-top: 1.75rem; align-items: start; }
+.razon__foto--b { margin-top: 3rem; }
+.razon__cejas { aspect-ratio: 724 / 303; }
+.razon__cejas img { object-position: 60% 50%; }
+
+/* Productos: los tres nombres en grande, como en una etiqueta */
+.razon--marcas { grid-column: 7 / span 6; }
+.razon__marcas { display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 1.5rem; }
+.razon__marcas li { display: grid; gap: 0.25rem; }
+.razon__marcas .serif { font-size: var(--t-head); line-height: 1; white-space: nowrap; }
+
+/* La zona: dirección y enlaces, sobre el mármol */
+.razon--zona { grid-column: 1 / -1; background: var(--fondo); padding: var(--relleno); display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--medianil); align-items: center; }
+.razon--zona h3 { grid-column: 1 / span 4; margin: 0; }
+.razon--zona .t-lead { grid-column: 5 / span 4; }
+.razon__enlaces { grid-column: 10 / -1; display: grid; }
+
+@media (max-width: 59.99em) {
+  .razones__cabeza h2, .razones__nota { grid-column: 1 / -1; }
+  .razones__nota { margin-top: 1.25rem; }
+  .razon--hora, .razon--todo, .razon--marcas { grid-column: 1 / -1; grid-row: auto; }
+  .razon--zona { grid-template-columns: 1fr; row-gap: 1rem; }
+  .razon--zona h3, .razon--zona .t-lead, .razon__enlaces { grid-column: 1; }
+}
+@media (max-width: 47.99em) {
+  .razon__marcas { grid-template-columns: 1fr; gap: 1rem; }
+  .razon__fotos { grid-template-columns: 1fr 1fr; }
+  .razon__foto--b { margin-top: 2rem; }
+  .razon--zona, .razon--hora { margin-inline: calc(var(--margen) * -1); }
+  .razon--zona, .razon__in { padding-inline: var(--margen); }
+}
+
+/* Las láminas flotan un poco con el scroll (js/nosotras.js escribe --deriva; solo transform) */
+.misiva__lamina { transform: translateY(var(--deriva, 0px)); }
+
+/* ---------- Pulsación y paso del ratón ---------- */
+.misiva__numero:active, .enlace:active { opacity: 0.7; }
+@media (hover: hover) and (pointer: fine) {
+  .misiva__numero:hover { text-decoration-color: transparent; }
+}

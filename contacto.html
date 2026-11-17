@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Reservar y ubicación | Labella Salón + Spa, zona 13, Guatemala</title>
-<meta name="description" content="Reserva tu cita en Labella Salón + Spa por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala. Lunes a viernes 6:30 a 17:00, sábados 7:00 a 16:00.">
+<meta name="description" content="Arma tu cita en Labella Salón + Spa y envíala por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala. Lunes a viernes de 6:30 a 17:00, sábados de 7:00 a 16:00.">
 <meta name="theme-color" content="#E9DDC8">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/contacto.html">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="es_GT">
 <meta property="og:site_name" content="Labella Salón + Spa">
 <meta property="og:title" content="Reservar y ubicación | Labella Salón + Spa">
-<meta property="og:description" content="Reserva tu cita en Labella Salón + Spa por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala. Lunes a viernes 6:30 a 17:00, sábados 7:00 a 16:00.">
+<meta property="og:description" content="Arma tu cita y envíala por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala.">
 <meta property="og:url" content="https://psantos2729.github.io/Spa-and-Beauty/contacto.html">
 <meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
 <script>document.documentElement.classList.add('js')</script>
@@ -21,15 +21,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/paginas.css">
+<link rel="stylesheet" href="css/contacto.css">
 <script src="script.js" defer></script>
-<script src="js/paginas.js" defer></script>
+<script src="js/contacto.js" defer></script>
 </head>
 <body>
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<!-- CABECERA (igual en todas las páginas; solo cambia dónde va) -->
+<!-- CABECERA (igual en todas las páginas; solo cambia dónde va aria-current="page") -->
 <header class="cabecera">
   <div class="cabecera__in envoltura">
     <a class="marca" href="index.html">
@@ -50,64 +50,172 @@
 
 <main id="contenido" tabindex="-1">
 
-<section class="titulo envoltura rejilla" aria-labelledby="titulo-pagina">
-  <h1 id="titulo-pagina" class="t-display" data-rise style="--i:0">Reserva<br> y ubicación</h1>
-  <p class="t-lead titulo__apoyo" data-rise style="--i:1">Arma tu cita aquí y envíala por WhatsApp. Te confirmamos la hora.</p>
-</section>
+<!-- ARMA TU CITA: el cupón para recortar. A la izquierda la tarjeta de cita que se va llenando;
+     a la derecha, tras el perforado, lo que eliges. Sin JavaScript queda el enlace de WhatsApp y el teléfono. -->
+<section class="cita envoltura" aria-labelledby="titulo-cita">
+  <div class="cita__cabeza rejilla">
+    <h1 id="titulo-cita" class="t-display" data-rise style="--i:0">Arma tu cita<br> en Labella</h1>
+    <p class="cita__apoyo" data-rise style="--i:1">Elige qué te quieres hacer, el día y la hora. Se abre WhatsApp con tu mensaje ya escrito; lo envías tú y te confirmamos la cita por ahí.</p>
+  </div>
 
-<section class="cita envoltura rejilla" aria-labelledby="c-cita" data-reveal-group>
-  <form class="cita__forma hoja" id="cita" action="https://wa.me/50230181300" method="get" target="_blank">
-    <div class="cinta cinta--media cita__cinta" aria-hidden="true"></div>
-    <h2 id="c-cita" class="t-head serif" data-reveal>Arma tu cita</h2>
-    <div class="cita__campos" data-reveal>
-      <label>Servicio
-        <select name="servicio">
-          <option>Cabello</option>
-          <option>Manicure y pedicure</option>
-          <option>Cejas</option>
-          <option>Limpieza facial</option>
-          <option>Masaje relajante</option>
-          <option>Depilación con cera</option>
-        </select>
-      </label>
-      <label>Día
-        <select name="dia">
-          <option>lunes</option><option>martes</option><option>miércoles</option><option>jueves</option><option>viernes</option><option>sábado</option>
-        </select>
-      </label>
-      <label>Hora que prefieres
-        <select name="hora"></select>
-      </label>
-      <label>Tu nombre
-        <input type="text" name="nombre" autocomplete="given-name" placeholder="Opcional">
-      </label>
+  <div class="cupon" data-rise style="--i:2">
+    <!-- La tarjeta de cita: lo que te llevas -->
+    <div class="cupon__tarjeta">
+      <div class="cinta cinta--media" aria-hidden="true"></div>
+      <div class="cupon__tarjeta-in">
+        <p class="cupon__marca"><img src="assets/logo.webp" alt="" width="147" height="124"><span>Labella Salón + Spa</span></p>
+        <h2 class="t-head">Tu cita</h2>
+        <dl class="cupon__datos" aria-live="polite">
+          <div><dt>Servicios</dt><dd data-cita="servicios" class="vacio">Por elegir</dd></div>
+          <div><dt>Día</dt><dd data-cita="dia" class="vacio">Por elegir</dd></div>
+          <div><dt>Hora</dt><dd data-cita="hora" class="vacio cifras">Por elegir</dd></div>
+          <div><dt>A nombre de</dt><dd data-cita="nombre" class="vacio">Opcional</dd></div>
+        </dl>
+        <p class="cupon__hoy"><span class="nota t-small">Hoy en el salón</span><span data-hoy>Lunes a viernes de 6:30 a 17:00, sábados de 7:00 a 16:00</span></p>
+        <div class="cupon__pie">
+          <figure class="cupon__sello">
+            <img src="assets/equipo.webp" alt="El equipo de Labella el día que cortó la cinta del salón" width="722" height="568" loading="lazy">
+          </figure>
+          <p class="cupon__aviso">Esto es una solicitud, no una cita confirmada. Te respondemos por WhatsApp con la hora y el precio.</p>
+        </div>
+      </div>
     </div>
-    <div class="talon cita__talon" data-reveal>
-      <p class="cita__resumen" id="cita-resumen" aria-live="polite">Elige servicio, día y hora, y envía el mensaje.</p>
-      <input type="hidden" name="text" value="Hola, quiero reservar en Labella Salón + Spa">
-      <button class="btn btn--barra" type="submit">Enviar por WhatsApp</button>
+
+    <!-- El cupón: lo que eliges (se arma con js/contacto.js) -->
+    <div class="cupon__corte">
+      <div class="cupon__sinjs" data-sinjs>
+        <p class="t-lead">Escríbenos por WhatsApp con el servicio, el día y la hora que te quedan, y te confirmamos la cita.</p>
+        <a class="btn btn--barra btn--papel" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Escribir por WhatsApp</a>
+        <a class="enlace" href="tel:+50230181300">O llámanos al 3018 1300</a>
+      </div>
+
+      <form class="armador" id="armador" hidden novalidate aria-label="Arma tu cita">
+        <fieldset class="armador__grupo">
+          <legend class="armador__titulo">¿Qué te quieres hacer?</legend>
+          <div class="armador__servicios">
+            <label class="ficha"><input type="checkbox" name="servicio" value="Cabello"><span>Cabello</span></label>
+            <label class="ficha"><input type="checkbox" name="servicio" value="Manicure y pedicure"><span>Manicure y pedicure</span></label>
+            <label class="ficha"><input type="checkbox" name="servicio" value="Cejas"><span>Cejas</span></label>
+            <label class="ficha"><input type="checkbox" name="servicio" value="Limpieza facial"><span>Limpieza facial</span></label>
+            <label class="ficha"><input type="checkbox" name="servicio" value="Masaje relajante"><span>Masaje relajante</span></label>
+            <label class="ficha"><input type="checkbox" name="servicio" value="Depilación con cera"><span>Depilación con cera</span></label>
+          </div>
+          <p class="armador__nota">Masaje relajante de 45 minutos con piedras calientes: 3 por Q500. El precio de lo demás te lo confirmamos por WhatsApp.</p>
+        </fieldset>
+
+        <fieldset class="armador__grupo">
+          <legend class="armador__titulo">¿Qué día?</legend>
+          <div class="calendario" data-calendario>
+            <div class="calendario__dias" aria-hidden="true"><span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span><span>Do</span></div>
+            <div class="calendario__rejilla" data-dias></div>
+          </div>
+          <p class="armador__nota">Los domingos no abrimos.</p>
+        </fieldset>
+
+        <div class="armador__fila">
+          <div class="campo">
+            <label for="cita-hora" class="armador__titulo">¿A qué hora?</label>
+            <div class="campo__select">
+              <select id="cita-hora" name="hora" disabled>
+                <option value="">Elige primero el día</option>
+              </select>
+              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 6l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="cita-nombre" class="armador__titulo">Tu nombre <span>(opcional)</span></label>
+            <input id="cita-nombre" name="nombre" type="text" autocomplete="given-name" autocapitalize="words" maxlength="40" enterkeyhint="send">
+          </div>
+        </div>
+        <p class="armador__nota">La última cita del día empieza una hora antes de cerrar. Si tu servicio es largo, te proponemos otra hora.</p>
+
+        <p class="armador__estado" data-estado role="status" aria-live="polite"></p>
+        <button class="btn btn--barra btn--papel armador__enviar" type="submit">Abrir WhatsApp con mi cita</button>
+        <p class="armador__privado">No guardamos nada aquí: el mensaje solo sale si tú lo envías desde WhatsApp. ¿Prefieres hablar? <a class="enlace" href="tel:+50230181300">Llama al 3018 1300</a></p>
+      </form>
     </div>
-  </form>
-  <div class="cita__datos">
-    <h2 class="t-display" data-reveal>Dónde estamos</h2>
-    <dl class="datos" data-reveal>
-      <div><dt class="t-head serif">Dirección</dt><dd>15 Avenida A 4-59, zona 13, Ciudad de Guatemala</dd></div>
-      <div><dt class="t-head serif">Horario</dt><dd>Lunes a viernes de 6:30 a 17:00<br>Sábados de 7:00 a 16:00</dd><dd class="nota" data-hoy></dd></div>
-      <div><dt class="t-head serif">Teléfono y WhatsApp</dt><dd><a class="enlace" href="tel:+50230181300">3018 1300</a></dd></div>
-    </dl>
   </div>
 </section>
 
-<section class="mapa envoltura" aria-labelledby="c-mapa" data-reveal-group>
-  <h2 id="c-mapa" class="t-display" data-reveal>Cómo llegar</h2>
-  <div class="mapa__marco" data-reveal>
-    <iframe src="https://www.google.com/maps?q=15+Avenida+A+4-59,+Zona+13,+Ciudad+de+Guatemala&amp;output=embed" title="Mapa de Labella Salón + Spa en 15 Avenida A 4-59, zona 13, Ciudad de Guatemala" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<!-- DÓNDE ESTAMOS: el horario a la izquierda, el mapa como una hoja con su talón -->
+<section class="donde campo-oscuro" aria-labelledby="titulo-donde">
+  <div class="donde__in envoltura rejilla">
+    <div class="donde__datos" data-reveal-group>
+      <h2 id="titulo-donde" class="t-display" data-reveal>Dónde<br> estamos</h2>
+      <p class="t-lead" data-reveal>15 Avenida A 4-59, zona&nbsp;13, Ciudad de Guatemala.</p>
+      <table class="horario" data-reveal data-horario>
+        <caption class="sr-only">Horario de Labella</caption>
+        <tbody>
+          <tr data-dia="1 2 3 4 5"><th scope="row">Lunes a viernes</th><td class="cifras">6:30 a 17:00</td></tr>
+          <tr data-dia="6"><th scope="row">Sábado</th><td class="cifras">7:00 a 16:00</td></tr>
+          <tr data-dia="0"><th scope="row">Domingo</th><td>Cerrado</td></tr>
+        </tbody>
+      </table>
+      <p class="donde__hoy" data-reveal data-hoy>Lunes a viernes de 6:30 a 17:00, sábados de 7:00 a 16:00</p>
+      <ul class="donde__enlaces" data-reveal>
+        <li><a class="enlace" href="tel:+50230181300">Llamar al 3018 1300</a></li>
+        <li><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>WhatsApp 3018 1300</a></li>
+      </ul>
+    </div>
+
+    <div class="donde__hoja-lugar" data-reveal>
+      <div class="donde__hoja">
+        <div class="cinta cinta--media" aria-hidden="true"></div>
+        <div class="donde__mapa">
+          <iframe src="https://www.google.com/maps?q=15+Avenida+A+4-59,+Zona+13,+Ciudad+de+Guatemala&amp;output=embed" title="Mapa de Labella Salón + Spa en 15 Avenida A 4-59, zona 13, Ciudad de Guatemala" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="talon donde__talon">
+          <p><span class="serif">15 Avenida A 4-59</span><span>Zona 13, Ciudad de Guatemala</span></p>
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Cómo llegar</a>
+        </div>
+      </div>
+    </div>
   </div>
-  <p data-reveal><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
+</section>
+
+<!-- LA ZONA: fotos y plano de la zona 13 con su tira de datos -->
+<section class="zona envoltura" aria-labelledby="titulo-zona">
+  <div class="zona__cabeza rejilla" data-reveal-group>
+    <h2 id="titulo-zona" class="t-display" data-reveal>Así es<br> la zona 13</h2>
+    <p class="zona__nota" data-reveal>La zona 13 queda al sur de la ciudad, junto a las zonas 9 y 14, y es la zona del aeropuerto La Aurora. Ahí, en la 15 Avenida A, está el salón.</p>
+  </div>
+
+  <div class="zona__mesa rejilla">
+    <figure class="lamina lamina--plano" data-reveal>
+      <div class="lamina__foto lamina__foto--plano"><img src="assets/zona13-plano.webp" alt="Plano de calles del sur de Ciudad de Guatemala con las zonas 9, 10, 13 y 14 y el aeropuerto al centro" width="736" height="896" loading="lazy"></div>
+      <figcaption class="lamina__tira lamina__tira--oscura">
+        <span class="lamina__que">El plano: la zona 13, al sur, junto al aeropuerto</span>
+        <span class="lamina__credito">Plano de Rodrigobaaz con datos de OpenStreetMap, CC BY-SA 2.0, Wikimedia Commons</span>
+      </figcaption>
+    </figure>
+
+    <figure class="lamina lamina--calle" data-reveal>
+      <div class="lamina__foto lamina__foto--calle"><img src="assets/zona13-calle.webp" alt="Edificios y árboles de la 15 Avenida de la zona 13, con un volcán al fondo" width="1280" height="800" loading="lazy"></div>
+      <figcaption class="lamina__tira">
+        <span class="lamina__que">La 15 Avenida de la zona 13, con un volcán al fondo</span>
+        <span class="lamina__credito">Foto de Rene Hernandez, CC BY-SA 2.0, Wikimedia Commons</span>
+      </figcaption>
+    </figure>
+
+    <figure class="lamina lamina--avion" data-reveal>
+      <div class="lamina__foto lamina__foto--avion"><img src="assets/zona13-avion.webp" alt="Un avión baja hacia el aeropuerto La Aurora sobre los edificios de la zona 13" width="720" height="900" loading="lazy"></div>
+      <figcaption class="lamina__tira">
+        <span class="lamina__que">Un avión baja hacia La Aurora</span>
+        <span class="lamina__credito">Foto de Rene Hernandez, CC BY-SA 2.0, Wikimedia Commons</span>
+      </figcaption>
+    </figure>
+
+    <div class="zona__llegar" data-reveal-group>
+      <h3 class="t-head" data-reveal>Antes de salir</h3>
+      <p data-reveal>Busca la dirección en tu mapa como 15 Avenida A 4-59, zona 13. Si te pierdes, llámanos al <a class="enlace" href="tel:+50230181300">3018 1300</a> y te guiamos.</p>
+      <p data-reveal><a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Abrir la dirección en Google Maps</a></p>
+    </div>
+  </div>
 </section>
 
 </main>
 
+<!-- PIE: el reverso de la tarjeta (igual en todas las páginas) -->
 <footer class="pie">
   <div class="cinta cinta--fina" aria-hidden="true"></div>
   <div class="pie__fondo envoltura rejilla">
@@ -130,7 +238,7 @@
           <li><a href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>WhatsApp 3018 1300</a></li>
           <li><a href="tel:+50230181300">Llamar al 3018 1300</a></li>
           <li><a href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">15 Avenida A 4-59, zona&nbsp;13</a></li>
-          <li><a href="contacto.html" aria-current="page">Cómo llegar</a></li>
+          <li><a href="contacto.html">Cómo llegar</a></li>
         </ul>
         <figure class="sello"><img src="assets/rizos.webp" alt="" width="661" height="884" loading="lazy"></figure>
       </div>

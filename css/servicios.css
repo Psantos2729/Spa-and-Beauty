@@ -1,0 +1,287 @@
+/* ==========================================================================
+   Servicios (servicios.html): la carta de servicios del salón.
+   Solo composición propia de esta página. Usa los tokens y piezas de
+   styles.css; no redefine colores ni tamaños.
+   ========================================================================== */
+
+/* ---------- Tapa: la portada de la carta, con su índice y su columna de precios ---------- */
+.tapa { padding-bottom: calc(var(--seccion) / 2); }
+.tapa__hoja {
+  --debajo: var(--fondo);
+  --feston: clamp(48px, 5vw, 72px);
+  background: var(--papel);
+  color: var(--tinta);
+}
+.tapa__hoja.feston-abajo { padding-bottom: calc(var(--feston) / 2 + 1rem); }
+.tapa__in {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--medianil);
+  align-items: start;
+  padding: clamp(1.75rem, 3.4vw, 3rem) var(--relleno) 0;
+}
+.tapa__texto { grid-column: 1 / span 6; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+.tapa__apoyo { max-width: 36ch; }
+.tapa__accion { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.5rem; }
+.tapa__hoy { font-weight: 500; }
+.tapa__foto { width: 100%; max-width: 40rem; margin-top: 0.5rem; } /* 640px: la foto nunca pasa de su tamaño real */
+.tapa__marco { aspect-ratio: 5 / 2; }
+.tapa__marco img { object-position: 50% 16%; }
+
+/* El índice: nombre, puntos guía y precio, como en una carta impresa */
+.indice { grid-column: 7 / -1; padding-left: clamp(0rem, 3vw, 3rem); }
+.indice__cabeza {
+  display: flex; justify-content: space-between;
+  font-size: var(--t-small); color: var(--nota);
+  padding-bottom: 0.5rem;
+}
+.indice ul { display: grid; list-style: none; padding: 0; }
+.indice__fila {
+  display: grid;
+  grid-template-columns: auto minmax(1.5rem, 1fr) auto;
+  grid-template-areas: "nombre puntos precio" "detalle detalle detalle";
+  align-items: baseline;
+  column-gap: 0.75rem;
+  min-height: 44px;
+  padding-block: 0.8rem;
+  text-decoration: none;
+  user-select: none; -webkit-user-select: none;
+  transition: transform var(--t-press) var(--ease-out);
+}
+.indice li + li .indice__fila { border-top: var(--punto) dotted var(--fondo); }
+.indice__nombre {
+  grid-area: nombre;
+  font-family: var(--serif); font-weight: 600; font-size: var(--t-head); line-height: 1.1;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+.indice__puntos {
+  grid-area: puntos; align-self: end;
+  height: 0; margin-bottom: 0.45em;
+  border-bottom: var(--punto) dotted var(--nota);
+  transform-origin: left center;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+.indice__precio { grid-area: precio; font-weight: 500; white-space: nowrap; }
+.indice__precio--promo { color: var(--cinta); }
+.indice__detalle { grid-area: detalle; color: var(--nota); padding-top: 0.15rem; }
+.indice__fila:active { transform: scale(0.985); }
+@media (hover: hover) and (pointer: fine) {
+  .indice__fila:hover .indice__nombre { transform: translateX(0.5rem); }
+  .indice__fila:hover .indice__puntos { transform: scaleX(0.94) translateX(0.5rem); }
+}
+
+/* Una sola foto que se mueve despacio: la del equipo */
+@media (prefers-reduced-motion: no-preference) {
+  .tapa__marco img { animation: deriva 16s var(--ease-in-out) infinite alternate; }
+}
+@keyframes deriva {
+  from { transform: scale(1); }
+  to { transform: scale(1.07) translate(-1.5%, 1%); }
+}
+
+@media (max-width: 63.99em) {
+  .tapa__texto { grid-column: 1 / -1; }
+  .indice { grid-column: 1 / -1; margin-top: 2.5rem; }
+}
+@media (max-width: 47.99em) {
+  .tapa { padding-inline: 0.5rem; }
+  .tapa__hoja .cinta { height: 2.5rem; }
+  .tapa__in { padding-inline: 1.25rem; }
+  .tapa__accion { flex-direction: column; align-items: flex-start; }
+  .tapa__marco { aspect-ratio: 3 / 2; }
+  .tapa__marco img { object-position: 46% 20%; }
+  .indice__fila { grid-template-columns: 1fr auto; grid-template-areas: "nombre precio" "detalle detalle"; }
+  .indice__puntos { display: none; }
+  .indice__nombre { font-size: var(--t-lead); }
+}
+
+/* ---------- La carta: tarjetas que se pliegan en lomos ---------- */
+/* Composición terminada (sin JavaScript, movimiento reducido, tableta y teléfono):
+   las seis tarjetas apiladas, cada una con su lomo a la izquierda. */
+.carta-lomos { --lomo: clamp(4.5rem, 6.6vw, 6rem); }
+.lomos__in { padding-block: calc(var(--seccion) / 2); }
+.lomos__titulo { color: var(--marfil); }
+.lomos__mazo { display: grid; gap: var(--medianil); margin-top: clamp(2rem, 4vw, 3.5rem); }
+
+.tarjeta {
+  --debajo: var(--espresso);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--lomo) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  background: var(--papel);
+  color: var(--tinta);
+  --foco: var(--bronce);
+}
+.tarjeta--tono-b { background: color-mix(in srgb, var(--papel) 50%, var(--fondo)); }
+.tarjeta--tono-c { background: var(--fondo); }
+.tarjeta > .cinta { grid-column: 1 / -1; background: none; }
+.tarjeta__lomo {
+  display: flex; align-items: flex-end; justify-content: center;
+  padding: 1.25rem 0 1.5rem;
+}
+.tarjeta__nombre {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--serif); font-weight: 600; font-size: var(--t-lead); line-height: 1;
+  white-space: nowrap;
+  transition: transform var(--t-hover) var(--ease-out);
+}
+.tarjeta__cuerpo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 18rem);
+  column-gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+  padding: clamp(1.25rem, 2.6vw, 2.25rem) var(--relleno) var(--relleno) clamp(0.5rem, 1.2vw, 1rem);
+}
+.tarjeta__texto { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+.tarjeta__texto p { max-width: 52ch; }
+.tarjeta__lista { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tarjeta__lista li { background: var(--debajo-lista, var(--fondo)); padding: 0.3rem 0.85rem; font-weight: 500; }
+.tarjeta--tono-c .tarjeta__lista li { --debajo-lista: var(--papel); }
+.tarjeta__accion { margin-top: 0.5rem; }
+
+.tarjeta__lamina { width: 100%; }
+.tarjeta .pie-foto { color: var(--nota); }
+.tarjeta__foto { aspect-ratio: 4 / 5; }
+.tarjeta__foto--rizos img { object-position: 50% 60%; }
+.tarjeta__foto--manos img { object-position: 22% 50%; }
+.tarjeta__foto--cejas { aspect-ratio: 1 / 1; }
+.tarjeta__foto--cejas img { object-position: 62% 50%; }
+.tarjeta__lamina--tipo {
+  display: grid; align-content: end; gap: 0.75rem;
+  aspect-ratio: 4 / 5;
+  padding: 1.5rem;
+  background: var(--espresso); color: var(--marfil);
+}
+.tarjeta__lamina--promo { background: var(--vino); }
+.tarjeta__lamina--promo .t-display { font-family: var(--serif); font-weight: 500; line-height: 0.95; }
+.tarjeta__lamina--tipo .t-head { font-family: var(--serif); font-weight: 600; }
+.tarjeta__lamina--doble { display: grid; gap: var(--medianil); align-content: start; }
+.tarjeta__lamina--doble .foto { aspect-ratio: 4 / 3; }
+.tarjeta__hora { aspect-ratio: auto; min-height: 10rem; }
+
+.lomos__pie {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+  gap: 0.25rem 2rem;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--marfil);
+}
+.lomos__boton { display: none; }
+
+@media (max-width: 47.99em) {
+  .tarjeta { grid-template-columns: minmax(0, 1fr); }
+  .tarjeta > .cinta { height: 2.5rem; }
+  .tarjeta__lomo { display: none; }
+  .tarjeta__cuerpo { grid-template-columns: minmax(0, 1fr); row-gap: 1.75rem; padding: 1.5rem 1.25rem 1.75rem; }
+  .tarjeta__accion, .tarjeta__accion .btn { width: 100%; }
+  .tarjeta__foto { aspect-ratio: 4 / 3; }
+  .tarjeta__foto--cejas { aspect-ratio: 2 / 1; }
+  .tarjeta__lamina--tipo { aspect-ratio: auto; min-height: 11rem; }
+}
+
+/* Escena viva (solo escritorio, con movimiento): el escenario se queda fijo
+   2,5 pantallas y cada paso desliza la siguiente tarjeta sobre la anterior,
+   que queda como un lomo de libro a la izquierda. js/servicios.js mueve las
+   tarjetas con transform y sus cuerpos con opacity. */
+html.js .carta-lomos.is-live { height: calc((var(--hold, 2.5) + 1) * 100svh); }
+html.js .carta-lomos.is-live > .scene-stage {
+  position: sticky; top: 0;
+  height: 100svh;
+  overflow: clip;
+}
+.carta-lomos.is-live .lomos__in {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  padding-block: clamp(1.75rem, 5svh, 3rem) clamp(1.25rem, 3.5svh, 2.25rem);
+}
+.carta-lomos.is-live .lomos__mazo {
+  position: relative;
+  display: block;
+  margin-top: clamp(1rem, 3svh, 1.75rem);
+  overflow: clip;
+}
+.carta-lomos.is-live .tarjeta {
+  position: absolute; top: 0; left: 0;
+  height: 100%;
+  will-change: transform;
+}
+/* la tarjeta abierta se llena de arriba abajo: título y texto arriba, la acción al pie,
+   la lámina (foto o cifra) a toda la altura */
+.carta-lomos.is-live .tarjeta__cuerpo {
+  overflow: hidden;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 0;
+}
+.carta-lomos.is-live .tarjeta__texto { min-height: 0; will-change: opacity; }
+.carta-lomos.is-live .tarjeta__accion { margin-top: auto; }
+.carta-lomos.is-live .tarjeta__lamina { will-change: opacity; display: flex; flex-direction: column; min-height: 0; }
+.carta-lomos.is-live .tarjeta__lamina > .foto { flex: 1 1 auto; min-height: 0; aspect-ratio: auto; }
+.carta-lomos.is-live .tarjeta__lamina--tipo { aspect-ratio: auto; }
+.carta-lomos.is-live .tarjeta__lamina--doble { display: flex; }
+.carta-lomos.is-live .tarjeta__lamina--doble .foto { aspect-ratio: 3 / 2; }
+.carta-lomos.is-live .tarjeta__hora { flex: 1 1 auto; min-height: 0; }
+@media (min-width: 80em) {
+  .carta-lomos.is-live .tarjeta h3 { font-size: var(--t-display); line-height: 0.98; letter-spacing: -0.025em; }
+}
+.carta-lomos.is-live .lomos__pie { margin-top: clamp(1rem, 3svh, 1.75rem); }
+
+.carta-lomos.is-live .lomos__boton {
+  display: block;
+  position: absolute; z-index: 1; left: 0; top: 0;
+  width: var(--lomo); height: 100%;
+  cursor: pointer;
+}
+.lomos__boton:focus-visible { outline-offset: -8px; }
+.lomos__boton:active ~ .tarjeta__lomo .tarjeta__nombre { transform: rotate(180deg) translateY(4px) scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .lomos__boton:hover ~ .tarjeta__lomo .tarjeta__nombre { transform: rotate(180deg) translateY(0.5rem); }
+}
+
+/* ---------- El precio: texto, vale de la promoción y antes y después ---------- */
+.precio { padding-block: var(--seccion) calc(var(--seccion) * 0.75); }
+.precio__in { align-items: start; }
+.precio__texto { grid-column: 1 / span 5; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+.precio__texto .t-lead { max-width: 34ch; }
+.precio__lugar { width: 100%; max-width: 30rem; margin-top: 1.5rem; }
+.vale {
+  --debajo: var(--fondo);
+  position: relative;
+  display: grid; gap: 0.75rem;
+  padding: var(--relleno) calc(var(--relleno) + 0.5rem);
+  background: var(--papel);
+  transform: rotate(-1.5deg);
+}
+/* muescas redondas a cada lado, como un vale que se corta */
+.vale::before, .vale::after {
+  content: ""; position: absolute; top: 50%;
+  width: var(--muesca); height: var(--muesca); border-radius: 50%;
+  background: var(--debajo);
+  transform: translateY(-50%);
+}
+.vale::before { left: calc(var(--muesca) / -2); }
+.vale::after { right: calc(var(--muesca) / -2); }
+.vale__cifra { color: var(--cinta); line-height: 0.95; }
+.vale__texto { max-width: 36ch; }
+
+.precio__foto { grid-column: 7 / -1; width: 100%; max-width: 44rem; justify-self: end; }
+.precio__marco { aspect-ratio: 707 / 532; }
+.precio__et {
+  position: absolute; bottom: 0.75rem;
+  padding: 0.3rem 0.9rem;
+  background: var(--tinta); color: var(--papel);
+  font-size: var(--t-small); font-weight: 500;
+}
+.precio__et--a { left: 0.75rem; }
+.precio__et--d { right: 0.75rem; }
+
+@media (max-width: 63.99em) {
+  .precio__texto, .precio__foto { grid-column: 1 / -1; }
+  .precio__foto { margin-top: 3rem; max-width: none; justify-self: stretch; }
+}
+@media (max-width: 47.99em) {
+  .precio__lugar { margin-top: 0.5rem; padding-inline: 0.5rem; }
+  .vale { transform: rotate(-1deg); }
+}

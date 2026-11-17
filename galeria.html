@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Galería | Labella Salón + Spa, zona 13, Guatemala</title>
-<meta name="description" content="Fotos de Labella Salón + Spa: color y rizos, antes y después, manicure, cejas y el equipo del salón en la zona 13.">
+<meta name="description" content="Fotos de Labella Salón + Spa en la zona 13: antes y después de un tratamiento capilar, color y rizos, manicure, cejas y la inauguración del salón.">
 <meta name="theme-color" content="#E9DDC8">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/galeria.html">
@@ -13,7 +13,7 @@
 <meta property="og:locale" content="es_GT">
 <meta property="og:site_name" content="Labella Salón + Spa">
 <meta property="og:title" content="Galería | Labella Salón + Spa">
-<meta property="og:description" content="Fotos de Labella Salón + Spa: color y rizos, antes y después, manicure, cejas y el equipo del salón en la zona 13.">
+<meta property="og:description" content="Antes y después, color y rizos, manicure, cejas y la inauguración del salón en la zona 13.">
 <meta property="og:url" content="https://psantos2729.github.io/Spa-and-Beauty/galeria.html">
 <meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
 <script>document.documentElement.classList.add('js')</script>
@@ -21,15 +21,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="css/paginas.css">
+<link rel="stylesheet" href="css/galeria.css">
 <script src="script.js" defer></script>
-<script src="js/paginas.js" defer></script>
+<script src="js/galeria.js" defer></script>
 </head>
 <body>
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<!-- CABECERA (igual en todas las páginas; solo cambia dónde va) -->
+<!-- CABECERA (igual en todas las páginas; solo cambia dónde va aria-current="page") -->
 <header class="cabecera">
   <div class="cabecera__in envoltura">
     <a class="marca" href="index.html">
@@ -50,51 +50,139 @@
 
 <main id="contenido" tabindex="-1">
 
-<section class="titulo envoltura rejilla" aria-labelledby="titulo-pagina">
-  <h1 id="titulo-pagina" class="t-display" data-rise style="--i:0">Galería<br> de Labella</h1>
-  <p class="t-lead titulo__apoyo" data-rise style="--i:1">Desliza la primera foto para comparar el antes y el después de un tratamiento capilar.</p>
-</section>
-
-<section class="comparar envoltura rejilla" aria-labelledby="g-antes" data-reveal-group>
-  <div class="comparar__texto">
-    <h2 id="g-antes" class="t-display" data-reveal>Antes<br> y después</h2>
-    <p data-reveal>Del cabello reseco y con frizz al cabello liso y con brillo. Mueve el control con el dedo, el ratón o las flechas del teclado.</p>
-    <div data-reveal><a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa data-wa-texto="Hola, quiero preguntar por un tratamiento capilar en Labella">Preguntar por este tratamiento</a></div>
-  </div>
-  <figure class="comparar__foto" data-reveal>
-    <div class="ba" id="ba">
-      <img class="ba__despues" src="assets/antes-despues.webp" alt="Después del tratamiento: cabello liso y con brillo" width="707" height="532" draggable="false">
-      <div class="ba__clip"><div class="ba__contra"><img src="assets/antes-despues.webp" alt="Antes del tratamiento: cabello reseco y con frizz" width="707" height="532" draggable="false"></div></div>
-      <span class="ba__et ba__et--a" aria-hidden="true">Antes</span>
-      <span class="ba__et ba__et--d" aria-hidden="true">Después</span>
-      <input class="ba__rango" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y después. Mueve para mostrar más de una u otra foto">
-      <div class="ba__asa" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
+<!-- VITRINA: la tarjeta de la galería junto a la foto de antes y después -->
+<section class="vitrina envoltura" aria-labelledby="titulo-galeria">
+  <div class="vitrina__tarjeta">
+    <div class="cinta" aria-hidden="true"></div>
+    <div class="vitrina__cuerpo">
+      <h1 id="titulo-galeria" class="t-display" data-rise style="--i:0">Galería<br> de Labella</h1>
+      <p class="t-lead vitrina__apoyo" data-rise style="--i:1">Fotos del salón en la zona 13, cada una con su etiqueta: el servicio y lo que se hizo. Empieza por el antes y el después de un tratamiento capilar.</p>
+      <p class="vitrina__guia" hidden data-rise style="--i:2">Mueve la línea de la foto con el dedo, con el ratón o con las flechas del teclado.</p>
+      <div data-rise style="--i:3">
+        <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Reservar por WhatsApp</a>
+      </div>
     </div>
-  </figure>
-</section>
+    <ul class="vitrina__enlaces" data-rise style="--i:4">
+      <li><a class="enlace" href="#titulo-fotos">Ver las fotos</a></li>
+      <li><a class="enlace" href="servicios.html">Ver servicios</a></li>
+      <li><a class="enlace" href="tel:+50230181300">Llamar al 3018 1300</a></li>
+    </ul>
+  </div>
 
-<section class="mosaico envoltura" aria-labelledby="g-fotos" data-reveal-group>
-  <h2 id="g-fotos" class="t-display" data-reveal>Fotos del salón</h2>
-  <div class="mosaico__rejilla">
-    <figure class="mosaico__a" data-reveal>
-      <div class="foto foto--4x5"><img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves" width="661" height="884" loading="lazy"></div>
-      <figcaption class="pie-foto">Color y rizos, hechos en el salón.</figcaption>
-    </figure>
-    <figure class="mosaico__b" data-reveal>
-      <div class="foto foto--4x3"><img class="foto-equipo" src="assets/equipo.webp" alt="El equipo de Labella cortando la cinta en la inauguración del salón" width="722" height="568" loading="lazy"></div>
-      <figcaption class="pie-foto">El equipo de Labella el día de la inauguración.</figcaption>
-    </figure>
-    <figure class="mosaico__c" data-reveal>
-      <div class="foto foto--4x3"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy"></div>
-      <figcaption class="pie-foto">Manicure y pedicure en tono natural.</figcaption>
-    </figure>
-    <figure class="mosaico__d" data-reveal>
-      <div class="foto foto--3x2"><img class="foto-cejas" src="assets/cejas.webp" alt="Diseño de cejas con pinza" width="724" height="303" loading="lazy"></div>
-      <figcaption class="pie-foto">Diseño y perfilado de cejas.</figcaption>
+  <div class="vitrina__sala campo-oscuro">
+    <figure class="vitrina__marco" data-rise style="--i:2">
+      <div class="ba" id="ba">
+        <img class="ba__base" src="assets/antes-despues.webp" alt="Antes y después de un tratamiento capilar: a la izquierda, cabello reseco y con frizz; a la derecha, cabello liso y con brillo" width="707" height="532" fetchpriority="high" draggable="false">
+        <div class="ba__clip" aria-hidden="true"><div class="ba__contra"><img src="assets/antes-despues.webp" alt="" width="707" height="532" draggable="false"></div></div>
+        <span class="ba__et ba__et--a" aria-hidden="true">Antes</span>
+        <span class="ba__et ba__et--d" aria-hidden="true">Después</span>
+        <input class="ba__rango" type="range" min="0" max="100" value="50" step="5" aria-label="Comparar el antes y el después del tratamiento capilar" aria-valuetext="Mitad antes, mitad después" hidden>
+        <div class="ba__asa" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
+      </div>
+      <figcaption class="tira__etiqueta etiqueta--papel">
+        <p class="tira__fila tira__fila--fuerte"><span>Tratamiento capilar</span><span>Antes y después</span></p>
+        <p class="tira__fila"><span>De reseco y con frizz a liso y con brillo</span></p>
+        <p class="tira__fila"><span>Trabajamos con Firenze y Chihtsai</span></p>
+      </figcaption>
     </figure>
   </div>
 </section>
 
+<!-- FOTOS: cada foto con su etiqueta colgada debajo -->
+<section class="fotos envoltura" aria-labelledby="titulo-fotos" data-reveal-group>
+  <div class="fotos__cabeza rejilla">
+    <h2 id="titulo-fotos" class="t-display" data-reveal>Cada foto<br> con su etiqueta</h2>
+    <p class="fotos__nota" data-reveal>Color y rizos hechos en el salón, el día que cortamos la cinta vino, y los servicios de uñas y cejas. Debajo de cada foto va lo que se hizo.</p>
+  </div>
+
+  <div class="fotos__rejilla">
+    <figure class="tira tira--rizos" data-reveal>
+      <div class="tira__foto foto"><img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, visto de espaldas en el salón" width="661" height="884" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--oscura">
+        <p class="tira__fila tira__fila--fuerte"><span>Cabello</span><span>Color y rizos</span></p>
+        <p class="tira__fila"><span>Mechas doradas</span><span>Hecho en el salón</span></p>
+        <p class="tira__fila"><span>Con Firenze y Chihtsai</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="tira tira--ancha tira--equipo" data-reveal>
+      <div class="tira__foto foto"><img src="assets/equipo.webp" alt="Las cinco integrantes del equipo de Labella sostienen la cinta vino frente a la entrada del salón" width="722" height="568" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--papel etiqueta--cinta">
+        <p class="tira__fila tira__fila--fuerte"><span>Inauguración</span><span>El equipo de Labella</span></p>
+        <p class="tira__fila"><span>El día que cortamos la cinta vino</span><span>15 Avenida A 4-59, zona&nbsp;13</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="tira tira--manicure" data-reveal>
+      <div class="tira__foto foto"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural, junto a flores blancas" width="722" height="545" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--papel">
+        <p class="tira__fila tira__fila--fuerte"><span>Manicure y pedicure</span></p>
+        <p class="tira__fila"><span>Manos y pies</span><span>Tono natural</span></p>
+        <p class="tira__fila"><span>Acabado limpio</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="tira tira--ancha tira--cejas" data-reveal>
+      <div class="tira__foto foto"><img src="assets/cejas.webp" alt="Una especialista perfila las cejas de una clienta recostada, con pinza" width="724" height="303" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--oscura etiqueta--cinta">
+        <p class="tira__fila tira__fila--fuerte"><span>Cejas</span><span>Diseño y perfilado</span></p>
+        <p class="tira__fila"><span>Con pinza</span><span>Para enmarcar tu mirada</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="tira tira--cinta" data-reveal>
+      <div class="tira__foto foto"><img src="assets/equipo.webp" alt="De cerca: las manos del equipo sobre la cinta vino, con las tijeras listas para cortarla" width="722" height="568" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--papel">
+        <p class="tira__fila tira__fila--fuerte"><span>La cinta</span><span>De cerca</span></p>
+        <p class="tira__fila"><span>Las tijeras, antes del corte</span></p>
+        <p class="tira__fila"><span>El primer día del salón</span></p>
+      </figcaption>
+    </figure>
+
+    <figure class="tira tira--detalle" data-reveal>
+      <div class="tira__foto foto"><img src="assets/rizos.webp" alt="De cerca: las puntas del cabello en rizos suaves con mechas doradas" width="661" height="884" loading="lazy"></div>
+      <figcaption class="tira__etiqueta etiqueta--oscura">
+        <p class="tira__fila tira__fila--fuerte"><span>Rizos</span><span>De cerca</span></p>
+        <p class="tira__fila"><span>Puntas en rizos suaves</span></p>
+        <p class="tira__fila"><span>Hecho en el salón</span></p>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ETIQUETAS: los otros servicios, colgados de la cinta -->
+<section class="etiquetas envoltura" aria-labelledby="titulo-etiquetas">
+  <div class="etiquetas__cabeza rejilla" data-reveal-group>
+    <h2 id="titulo-etiquetas" class="t-display" data-reveal>También<br> en Labella</h2>
+    <p class="etiquetas__nota" data-reveal>Tres servicios más del salón. Toca el de tu interés y nos escribes con el mensaje ya listo.</p>
+  </div>
+  <div class="etiquetas__cuerda cinta cinta--media" aria-hidden="true"></div>
+  <ul class="etiquetas__lista" data-reveal-group>
+    <li class="etiquetas__item" data-reveal>
+      <div class="etiqueta etiqueta--papel">
+        <h3 class="t-head">Limpieza facial</h3>
+        <p>Nueva en el salón, con productos Hubis&nbsp;Lab.</p>
+        <a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20una%20limpieza%20facial%20en%20Labella" data-wa data-wa-texto="Hola, quiero reservar una limpieza facial en Labella">Reservar limpieza facial</a>
+      </div>
+    </li>
+    <li class="etiquetas__item" data-reveal>
+      <div class="etiqueta etiqueta--oscura">
+        <h3 class="t-head">Masaje relajante</h3>
+        <p>45 minutos con piedras calientes. En promoción: <strong class="cifras">3 por Q500</strong>.</p>
+        <a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20un%20masaje%20relajante%20en%20Labella" data-wa data-wa-texto="Hola, quiero reservar un masaje relajante en Labella">Reservar masaje</a>
+      </div>
+    </li>
+    <li class="etiquetas__item" data-reveal>
+      <div class="etiqueta etiqueta--papel">
+        <h3 class="t-head">Depilación con cera</h3>
+        <p>Pregúntanos por las zonas que trabajamos.</p>
+        <a class="enlace" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20preguntar%20por%20la%20depilaci%C3%B3n%20con%20cera%20en%20Labella" data-wa data-wa-texto="Hola, quiero preguntar por la depilación con cera en Labella">Preguntar por la cera</a>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- RESERVA: la tarjeta de respuesta (compartida) -->
 <section class="respuesta campo-vino" aria-labelledby="titulo-reserva">
   <div class="respuesta__in envoltura rejilla" data-reveal-group>
     <p class="respuesta__nota" data-reveal>Dinos qué servicio quieres y qué día te queda. Te confirmamos la hora por WhatsApp.</p>
@@ -111,6 +199,7 @@
 
 </main>
 
+<!-- PIE: el reverso de la tarjeta (igual en todas las páginas) -->
 <footer class="pie">
   <div class="cinta cinta--fina" aria-hidden="true"></div>
   <div class="pie__fondo envoltura rejilla">
