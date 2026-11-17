@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Inicio (index.html) — solo lo propio de esta página.
+   Usa los tokens y piezas de styles.css; no redefine colores ni tamaños.
+   ========================================================================== */
+
+/* ---------- Portada: la tarjeta de cita junto a la sala ---------- */
+.portada {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--medianil);
+  min-height: min(calc(100svh - 5rem - var(--margen)), 60rem);
+  padding-bottom: var(--margen);
+}
+.portada__tarjeta {
+  --debajo: var(--fondo);
+  display: flex; flex-direction: column;
+  background: var(--papel);
+  text-align: center;
+}
+.portada__cuerpo {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.5rem;
+  padding: clamp(2rem, 4vw, 3.5rem) var(--relleno) 1.5rem;
+}
+.portada__marca {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  font-family: var(--serif); font-weight: 600; font-size: var(--t-lead); line-height: 1;
+}
+.portada__marca img { width: 3.5rem; height: auto; }
+.portada h1 { max-width: 12ch; }
+.portada__apoyo { max-width: 36ch; }
+.portada__datos {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;
+  width: 100%; max-width: 30rem; text-align: left;
+}
+.portada__datos div { background: var(--fondo); padding: 0.75rem 1rem; }
+.portada__datos dt { font-size: var(--t-small); color: var(--nota); }
+.portada__datos dd { font-weight: 500; line-height: 1.35; }
+.portada__enlaces {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 0 1.75rem;
+  padding: 0 var(--relleno) 1.75rem;
+}
+
+.portada__sala {
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+}
+.portada__marco { width: 100%; max-width: 35rem; } /* 560px: ninguna foto pasa de ~1,3 veces su tamaño */
+.portada__pie { min-height: 3em; margin-top: 1rem; font-size: var(--t-body); }
+.portada .fundido-elegir { margin-top: 0.5rem; margin-left: -0.75rem; }
+
+@media (max-width: 59.99em) {
+  .portada { grid-template-columns: 1fr; min-height: 0; gap: 0; }
+  .portada__sala { order: -1; padding: 1rem 1rem 2.75rem; }
+  .portada__tarjeta { position: relative; margin-top: -1.5rem; }
+  .portada__marco { max-width: 35rem; }
+}
+@media (max-width: 47.99em) {
+  .portada__sala { padding: 0.75rem 0.75rem 2.25rem; }
+  .portada__sala .fundido { aspect-ratio: 4 / 3; }
+  .portada__pie { min-height: 3.1em; margin-top: 0.75rem; }
+  .portada .fundido-elegir { margin-top: 0.25rem; }
+  .portada__tarjeta .cinta { height: 2.5rem; }
+  .portada__marca img { width: 2.75rem; }
+  .portada__datos { grid-template-columns: 1fr; }
+  .portada__enlaces { flex-direction: column; align-items: center; }
+}
+
+/* ---------- Presentación: título, nota y fila de datos ---------- */
+.presenta { padding-top: var(--seccion); padding-bottom: calc(var(--seccion) / 2); }
+.presenta__fila { align-items: end; }
+.presenta__fila h2 { grid-column: 1 / span 6; }
+.presenta__nota { grid-column: 9 / -1; max-width: 34ch; }
+.datos-fila {
+  display: flex; justify-content: space-between; gap: var(--medianil);
+  margin-top: clamp(4rem, 8vw, 7.5rem);
+}
+.datos-fila li { display: flex; flex-direction: column; gap: 0.5rem; max-width: 15rem; }
+.datos-fila .t-head { line-height: 1; white-space: nowrap; }
+
+@media (max-width: 47.99em) {
+  .presenta__fila h2, .presenta__nota { grid-column: 1 / -1; }
+  .presenta__nota { margin-top: 1.25rem; }
+  .datos-fila { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem var(--medianil); margin-top: 3rem; }
+}
+
+/* ---------- Servicios en breve: la hoja de servicios con su talón ---------- */
+.carta { padding-block: calc(var(--seccion) / 2); }
+.carta__in { align-items: start; }
+.carta__hoja { grid-column: 1 / span 8; --debajo: var(--fondo); }
+.carta__hoja h2 { margin-bottom: clamp(2rem, 4vw, 3.5rem); }
+.carta__lista {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 4vw, 3.5rem);
+}
+.carta__lista h3 { font-size: var(--t-head); margin-bottom: 0.4rem; }
+.carta__lista p { max-width: 34ch; }
+.carta__promo { color: var(--cinta); font-weight: 500; }
+.carta__talon {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 0.5rem 2rem;
+}
+.carta__talon p { max-width: 44ch; }
+
+.carta__fotos {
+  grid-column: 9 / -1;
+  display: grid; grid-template-columns: 3fr 2fr; column-gap: var(--medianil);
+  align-items: start;
+}
+.carta__grande { grid-column: 1 / -1; }
+.carta__chica { grid-column: 1; margin-top: -4rem; margin-left: calc(var(--medianil) * -2); position: relative; }
+.carta__chica .foto { outline: 8px solid var(--fondo); outline-offset: 0; }
+.carta__fotos .pie-foto { grid-column: 2; margin-top: 1rem; }
+
+@media (max-width: 59.99em) {
+  .carta__hoja { grid-column: 1 / -1; }
+  .carta__fotos { grid-column: 1 / -1; margin-top: 3rem; max-width: 36rem; justify-self: center; width: 100%; }
+  .carta__chica { margin-left: 0; }
+}
+@media (max-width: 47.99em) {
+  .carta__lista { grid-template-columns: 1fr; }
+}

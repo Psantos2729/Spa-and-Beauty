@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Reservar y ubicación | Labella Salón + Spa, zona 13, Guatemala</title>
+<meta name="description" content="Reserva tu cita en Labella Salón + Spa por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala. Lunes a viernes 6:30 a 17:00, sábados 7:00 a 16:00.">
+<meta name="theme-color" content="#E9DDC8">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/contacto.html">
+<link rel="icon" type="image/webp" href="assets/logo.webp">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_GT">
+<meta property="og:site_name" content="Labella Salón + Spa">
+<meta property="og:title" content="Reservar y ubicación | Labella Salón + Spa">
+<meta property="og:description" content="Reserva tu cita en Labella Salón + Spa por WhatsApp. 15 Avenida A 4-59, zona 13, Ciudad de Guatemala. Lunes a viernes 6:30 a 17:00, sábados 7:00 a 16:00.">
+<meta property="og:url" content="https://psantos2729.github.io/Spa-and-Beauty/contacto.html">
+<meta property="og:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/paginas.css">
+<script src="script.js" defer></script>
+<script src="js/paginas.js" defer></script>
+</head>
+<body>
+
+<a class="salto" href="#contenido">Saltar al contenido</a>
+
+<!-- CABECERA (igual en todas las páginas; solo cambia dónde va) -->
+<header class="cabecera">
+  <div class="cabecera__in envoltura">
+    <a class="marca" href="index.html">
+      <img src="assets/logo.webp" alt="" width="147" height="124">
+      <span>Labella Salón + Spa</span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <ul>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotras.html">Nosotras</a></li>
+        <li><a href="contacto.html" aria-current="page">Ubicación</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--chico" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Reservar</a>
+  </div>
+</header>
+
+<main id="contenido" tabindex="-1">
+
+<section class="titulo envoltura rejilla" aria-labelledby="titulo-pagina">
+  <h1 id="titulo-pagina" class="t-display" data-rise style="--i:0">Reserva<br> y ubicación</h1>
+  <p class="t-lead titulo__apoyo" data-rise style="--i:1">Arma tu cita aquí y envíala por WhatsApp. Te confirmamos la hora.</p>
+</section>
+
+<section class="cita envoltura rejilla" aria-labelledby="c-cita" data-reveal-group>
+  <form class="cita__forma hoja" id="cita" action="https://wa.me/50230181300" method="get" target="_blank">
+    <div class="cinta cinta--media cita__cinta" aria-hidden="true"></div>
+    <h2 id="c-cita" class="t-head serif" data-reveal>Arma tu cita</h2>
+    <div class="cita__campos" data-reveal>
+      <label>Servicio
+        <select name="servicio">
+          <option>Cabello</option>
+          <option>Manicure y pedicure</option>
+          <option>Cejas</option>
+          <option>Limpieza facial</option>
+          <option>Masaje relajante</option>
+          <option>Depilación con cera</option>
+        </select>
+      </label>
+      <label>Día
+        <select name="dia">
+          <option>lunes</option><option>martes</option><option>miércoles</option><option>jueves</option><option>viernes</option><option>sábado</option>
+        </select>
+      </label>
+      <label>Hora que prefieres
+        <select name="hora"></select>
+      </label>
+      <label>Tu nombre
+        <input type="text" name="nombre" autocomplete="given-name" placeholder="Opcional">
+      </label>
+    </div>
+    <div class="talon cita__talon" data-reveal>
+      <p class="cita__resumen" id="cita-resumen" aria-live="polite">Elige servicio, día y hora, y envía el mensaje.</p>
+      <input type="hidden" name="text" value="Hola, quiero reservar en Labella Salón + Spa">
+      <button class="btn btn--barra" type="submit">Enviar por WhatsApp</button>
+    </div>
+  </form>
+  <div class="cita__datos">
+    <h2 class="t-display" data-reveal>Dónde estamos</h2>
+    <dl class="datos" data-reveal>
+      <div><dt class="t-head serif">Dirección</dt><dd>15 Avenida A 4-59, zona 13, Ciudad de Guatemala</dd></div>
+      <div><dt class="t-head serif">Horario</dt><dd>Lunes a viernes de 6:30 a 17:00<br>Sábados de 7:00 a 16:00</dd><dd class="nota" data-hoy></dd></div>
+      <div><dt class="t-head serif">Teléfono y WhatsApp</dt><dd><a class="enlace" href="tel:+50230181300">3018 1300</a></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="mapa envoltura" aria-labelledby="c-mapa" data-reveal-group>
+  <h2 id="c-mapa" class="t-display" data-reveal>Cómo llegar</h2>
+  <div class="mapa__marco" data-reveal>
+    <iframe src="https://www.google.com/maps?q=15+Avenida+A+4-59,+Zona+13,+Ciudad+de+Guatemala&amp;output=embed" title="Mapa de Labella Salón + Spa en 15 Avenida A 4-59, zona 13, Ciudad de Guatemala" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <p data-reveal><a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Abrir en Google Maps</a></p>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="cinta cinta--fina" aria-hidden="true"></div>
+  <div class="pie__fondo envoltura rejilla">
+    <div class="pie__tarjeta feston-arriba">
+      <div class="pie__mensaje">
+        <h2>Te esperamos</h2>
+        <p>Abrimos de lunes a viernes de 6:30 a 17:00 y los sábados de 7:00 a 16:00. Escríbenos y te confirmamos tu hora.</p>
+        <nav class="pie__nav" aria-label="Páginas del sitio">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="nosotras.html">Nosotras</a></li>
+            <li><a href="contacto.html" aria-current="page">Ubicación</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__datos">
+        <ul class="pie__lineas">
+          <li><a href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>WhatsApp 3018 1300</a></li>
+          <li><a href="tel:+50230181300">Llamar al 3018 1300</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">15 Avenida A 4-59, zona&nbsp;13</a></li>
+          <li><a href="contacto.html" aria-current="page">Cómo llegar</a></li>
+        </ul>
+        <figure class="sello"><img src="assets/rizos.webp" alt="" width="661" height="884" loading="lazy"></figure>
+      </div>
+      <p class="pie__imprenta">Labella Salón + Spa, Ciudad de Guatemala</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

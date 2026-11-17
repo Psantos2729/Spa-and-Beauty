@@ -2,10 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Labella Salón + Spa | Salón de belleza y spa en zona 13, Guatemala</title>
 <meta name="description" content="Salón y spa en la zona 13 de Ciudad de Guatemala: cabello, manicure y pedicure, cejas, limpieza facial, masajes y depilación. Reserva por WhatsApp.">
-<meta name="theme-color" content="#F6EFE3">
+<meta name="theme-color" content="#E9DDC8">
+<meta name="color-scheme" content="light">
 <!-- TODO: confirmar la URL final de GitHub Pages (canonical, og:url, og:image y JSON-LD) -->
 <link rel="canonical" href="https://psantos2729.github.io/Spa-and-Beauty/">
 <link rel="icon" type="image/webp" href="assets/logo.webp">
@@ -23,10 +24,12 @@
 <meta name="twitter:title" content="Labella Salón + Spa, zona 13">
 <meta name="twitter:description" content="Cabello, uñas, cejas, limpieza facial, masajes y depilación en la zona 13. Reserva tu cita por WhatsApp.">
 <meta name="twitter:image" content="https://psantos2729.github.io/Spa-and-Beauty/assets/rizos.webp">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Jost:wght@400;500&amp;display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="css/inicio.css">
 <script src="script.js" defer></script>
 <script type="application/ld+json">
 {
@@ -63,282 +66,179 @@
 
 <a class="salto" href="#contenido">Saltar al contenido</a>
 
-<svg class="sprite" aria-hidden="true" focusable="false">
-  <symbol id="wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4.1A8 8 0 1 1 8.2 18.8L4 20z"/><path d="M9 9.2c.3 2.4 2.4 4.5 5.8 5.5l1.2-1.4-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2L9 9.2z" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="veta" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-linecap="round">
-    <path stroke-width="1.4" d="M-40 260C180 200 300 330 520 290S860 120 1060 190s280 150 430 110"/>
-    <path stroke-width=".8" d="M520 290c60 90 30 190 120 260s250 60 330 150 60 150 120 220"/>
-    <path stroke-width="1" d="M-40 640c160-50 260 30 400 10s210-110 360-90 220 120 380 110 240-90 380-60"/>
-    <path stroke-width=".7" d="M1060 190c-30 80 40 140 20 220s-110 120-100 200"/>
-    <path stroke-width=".6" d="M200 0c30 80-20 150 30 230s130 90 150 180"/>
-  </symbol>
-</svg>
-
-<!--
-  Los enlaces con data-wa apuntan a #reservar si no hay JavaScript;
-  script.js les pone la URL de WhatsApp desde una sola constante (WHATSAPP).
--->
-<header class="sitio">
-  <div class="sitio__in">
-    <a class="marca" href="#inicio">
+<!-- CABECERA (igual en todas las páginas; solo cambia dónde va aria-current="page") -->
+<header class="cabecera">
+  <div class="cabecera__in envoltura">
+    <a class="marca" href="index.html" aria-current="page">
       <img src="assets/logo.webp" alt="" width="147" height="124">
       <span>Labella Salón + Spa</span>
     </a>
-    <nav class="nav" aria-label="Secciones">
+    <nav class="nav" aria-label="Principal">
       <ul>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#galeria">Galería</a></li>
-        <li><a href="#ubicacion">Ubicación</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+        <li><a href="nosotras.html">Nosotras</a></li>
+        <li><a href="contacto.html">Ubicación</a></li>
       </ul>
     </nav>
-    <a class="btn btn--sm" href="#reservar" data-wa><span>Reservar</span></a>
+    <a class="btn btn--chico" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Reservar</a>
   </div>
 </header>
 
 <main id="contenido" tabindex="-1">
 
-<section class="hero" id="inicio" aria-labelledby="titulo-inicio" data-amb>
-  <div class="amb" aria-hidden="true">
-    <div class="capa" data-prof=".16">
-      <div class="luz luz--1 a"></div>
-      <div class="luz luz--2 a"></div>
-      <div class="luz luz--3 a"></div>
-      <div class="rayo a"></div>
-    </div>
-    <div class="capa" data-prof=".08"><svg class="veta a"><use href="#veta"/></svg></div>
-    <div class="capa polvo" data-capa="lejos" data-prof=".05" data-n="6" data-nm="3"></div>
-    <div class="capa polvo" data-capa="medio" data-prof=".12" data-n="6" data-nm="2"></div>
-    <div class="capa polvo" data-capa="cerca" data-prof=".24" data-n="5" data-nm="2"></div>
-  </div>
-  <div class="hero__inner">
-    <div>
-      <h1 id="titulo-inicio">
-        <span class="linea"><span style="--d:120ms">Tu cabello,</span></span>
-        <span class="linea"><span style="--d:220ms">tus manos,</span></span>
-        <span class="linea"><span style="--d:320ms">tu calma.</span></span>
-      </h1>
-      <span class="filete" aria-hidden="true"></span>
-      <p class="lead h" style="--d:560ms">Salón y spa en la zona 13. Cabello, uñas, cejas, masajes, limpieza facial y depilación, todo en un mismo lugar. Reserva tu cita por WhatsApp.</p>
-      <div class="hero__cta h" style="--d:660ms">
-        <span class="iman">
-          <a class="btn" href="#reservar" data-wa><svg aria-hidden="true"><use href="#wa"/></svg><span>Reservar por WhatsApp</span></a>
-        </span>
-        <a class="btn btn--claro" href="#servicios"><span>Ver servicios</span></a>
+<!-- PORTADA: la tarjeta de cita junto a la sala -->
+<section class="portada envoltura" aria-labelledby="titulo-inicio">
+  <div class="portada__tarjeta">
+    <div class="cinta" aria-hidden="true"></div>
+    <div class="portada__cuerpo">
+      <p class="portada__marca" data-rise style="--i:0"><img src="assets/logo.webp" alt="" width="147" height="124"><span>Labella Salón + Spa</span></p>
+      <h1 id="titulo-inicio" class="t-display" data-rise style="--i:1">Tu salón y spa<br> en la zona 13</h1>
+      <p class="t-lead portada__apoyo" data-rise style="--i:2">Cabello, uñas, cejas, limpieza facial, masajes y depilación con cera. Abrimos desde las 6:30 y te confirmamos tu cita por WhatsApp.</p>
+      <dl class="portada__datos" data-rise style="--i:3">
+        <div><dt>Horario</dt><dd data-hoy>Lunes a viernes desde las 6:30, sábados desde las 7:00</dd></div>
+        <div><dt>Dirección</dt><dd>15 Avenida A 4-59, zona&nbsp;13</dd></div>
+      </dl>
+      <div data-rise style="--i:4">
+        <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Reservar por WhatsApp</a>
       </div>
-      <p class="horario h" style="--d:760ms">Lunes a viernes de 6:30 a 17:00. Sábados de 7:00 a 16:00.</p>
     </div>
-    <div class="arco">
-      <div class="arco__marco" aria-hidden="true"><i></i></div>
-      <div class="arco__ventana">
-        <div class="arco__zoom"><img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884" fetchpriority="high"></div>
-        <div class="arco__velo" aria-hidden="true"></div>
-      </div>
-      <span class="arco__base" aria-hidden="true"></span>
-    </div>
-  </div>
-</section>
-
-<div class="cinta" data-amb>
-  <div class="cinta__pista a">
-    <ul>
-      <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia</li><li>Manicure y pedicure</li><li>Cejas</li><li>Limpieza facial</li><li>Masaje relajante</li><li>Depilación con cera</li>
-    </ul>
-    <ul aria-hidden="true">
-      <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia</li><li>Manicure y pedicure</li><li>Cejas</li><li>Limpieza facial</li><li>Masaje relajante</li><li>Depilación con cera</li>
+    <ul class="portada__enlaces" data-rise style="--i:5">
+      <li><a class="enlace" href="servicios.html">Ver servicios</a></li>
+      <li><a class="enlace" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">Cómo llegar</a></li>
+      <li><a class="enlace" href="tel:+50230181300">Llamar al 3018 1300</a></li>
     </ul>
   </div>
-  <button class="cinta__pausa" type="button" aria-pressed="false" aria-label="Pausar la cinta de servicios"><i aria-hidden="true"></i></button>
-</div>
 
-<section class="servicios" id="servicios" aria-labelledby="titulo-servicios" data-amb>
-  <div class="amb" aria-hidden="true">
-    <div class="luz a"></div>
-    <svg class="veta a"><use href="#veta"/></svg>
-  </div>
-  <div class="wrap">
-    <h2 class="rev" id="titulo-servicios"><span class="linea"><span>Lo que hacemos por ti</span></span></h2>
-    <p class="intro rev" style="--d:120ms">Cabello, uñas, cejas, rostro y cuerpo. Escríbenos y te ayudamos a elegir.</p>
-    <div class="grid">
-      <article class="card card--alta rev" data-tilt>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__foto"><img class="foto-cabello" src="assets/rizos.webp" alt="Rizos castaños con color y brillo" width="661" height="884" loading="lazy"></div>
-          <div class="card__txt">
-            <h3>Cabello</h3>
-            <p>Cortes, color, peinados, tratamientos capilares y bioplastia capilar.</p>
-            <span class="precio">Desde [PRECIOS]</span>
-          </div>
-        </div></div>
-      </article>
-      <article class="card rev" style="--d:70ms" data-tilt>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__foto"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy"></div>
-          <div class="card__txt">
-            <h3>Manicure y pedicure</h3>
-            <p>Cuidado y diseño de uñas, con acabado limpio y natural.</p>
-            <span class="precio">Desde [PRECIOS]</span>
-          </div>
-        </div></div>
-      </article>
-      <article class="card rev" style="--d:140ms" data-tilt>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__foto"><img class="foto-cejas" src="assets/cejas.webp" alt="Diseño de cejas con pinza" width="724" height="303" loading="lazy"></div>
-          <div class="card__txt">
-            <h3>Cejas</h3>
-            <p>Diseño y perfilado para enmarcar tu mirada.</p>
-            <span class="precio">Desde [PRECIOS]</span>
-          </div>
-        </div></div>
-      </article>
-      <article class="card card--vino rev" data-tilt data-amb>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="amb" aria-hidden="true">
-            <div class="luz a"></div>
-            <div class="polvo" data-capa="medio" data-n="5" data-nm="3" data-lento></div>
-          </div>
-          <div class="card__txt">
-            <h3>Masaje relajante</h3>
-            <p>45 minutos de masaje con piedras calientes.</p>
-            <span class="precio">3 por Q500</span>
-            <p>Promoción. Confirma disponibilidad al reservar.</p>
-          </div>
-        </div></div>
-      </article>
-      <article class="card card--texto card--facial rev" style="--d:70ms" data-tilt>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__txt">
-            <span class="nuevo">Nuevo</span>
-            <h3>Limpieza facial</h3>
-            <p>Limpieza facial con productos Hubis Lab.</p>
-            <span class="precio">Desde [PRECIOS]</span>
-          </div>
-        </div></div>
-      </article>
-      <article class="card card--texto rev" data-tilt>
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__txt">
-            <h3>Depilación con cera</h3>
-            <p>Pregúntanos por las zonas que trabajamos.</p>
-            <span class="precio">Desde [PRECIOS]</span>
-          </div>
-        </div></div>
-      </article>
-      <article class="card card--solo rev" style="--d:70ms">
-        <div class="card__in"><div class="card__cuerpo">
-          <div class="card__txt">
-            <div>
-              <h3>¿No sabes por dónde empezar?</h3>
-              <p>Cuéntanos qué buscas y te recomendamos.</p>
-            </div>
-            <a class="btn" href="#reservar" data-wa><svg aria-hidden="true"><use href="#wa"/></svg><span>Reservar por WhatsApp</span></a>
-          </div>
-        </div></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="galeria" id="galeria" aria-labelledby="titulo-galeria">
-  <div class="wrap">
-    <h2 class="rev" id="titulo-galeria"><span class="linea"><span>Nuestro trabajo</span></span></h2>
-    <p class="intro rev" style="--d:120ms">Desliza la primera foto para ver el antes y el después.</p>
-    <div class="galeria-grid">
-      <figure class="tile tile--ba rev">
-        <div class="ba" id="ba">
-          <img class="ba__despues" src="assets/antes-despues.webp" alt="Después del tratamiento: cabello liso y con brillo" width="707" height="532" loading="lazy" draggable="false">
-          <div class="ba__clip"><div class="ba__contra"><img src="assets/antes-despues.webp" alt="Antes del tratamiento: cabello reseco y con frizz" width="707" height="532" loading="lazy" draggable="false"></div></div>
-          <span class="ba__et ba__et--a" aria-hidden="true">Antes</span>
-          <span class="ba__et ba__et--d" aria-hidden="true">Después</span>
-          <input class="ba__rango" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y después. Mueve para mostrar más de una u otra foto">
-          <div class="ba__asa" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
-        </div>
-      </figure>
-      <figure class="tile tile--equipo rev" style="--d:90ms"><img class="foto-equipo" src="assets/equipo.webp" alt="Equipo de Labella en la inauguración del salón" width="722" height="568" loading="lazy"></figure>
-      <figure class="tile tile--c rev" style="--d:60ms"><img src="assets/manicure.webp" alt="Manicure y pedicure con flores blancas" width="722" height="545" loading="lazy"></figure>
-      <figure class="tile tile--c rev" style="--d:150ms"><img class="foto-cejas" src="assets/cejas.webp" alt="Cejas perfiladas" width="724" height="303" loading="lazy"></figure>
-    </div>
-  </div>
-</section>
-
-<section class="razones" aria-labelledby="titulo-razones">
-  <div class="wrap">
-    <h2 class="rev" id="titulo-razones"><span class="linea"><span>Por qué venir a Labella</span></span></h2>
-    <ul>
-      <li class="rev">
-        <h3>Todo en un mismo lugar</h3>
-        <p>Cabello, uñas, cejas, limpieza facial, masajes y depilación con cera.</p>
-      </li>
-      <li class="rev" style="--d:60ms">
-        <h3>Desde temprano</h3>
-        <p>Abrimos a las 6:30 de lunes a viernes y a las 7:00 los sábados.</p>
-      </li>
-      <li class="rev" style="--d:120ms">
-        <h3>En la zona 13</h3>
-        <p>Nos encuentras en la 15 Avenida A 4-59.</p>
-      </li>
-      <li class="rev" style="--d:180ms">
-        <h3>Productos que conocemos</h3>
-        <p>Trabajamos con Firenze y Chihtsai, y con Hubis Lab en la limpieza facial.</p>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<section class="ubicacion" id="ubicacion" aria-labelledby="titulo-ubicacion">
-  <div class="wrap">
-    <h2 class="rev" id="titulo-ubicacion"><span class="linea"><span>Dónde estamos</span></span></h2>
-    <div class="ubicacion__in">
-      <div class="rev">
-        <dl class="datos">
-          <div><dt>Dirección</dt><dd>15 Avenida A 4-59, Zona 13, Ciudad de Guatemala</dd></div>
-          <div><dt>Horario</dt><dd>Lunes a viernes de 6:30 a 17:00<br>Sábados de 7:00 a 16:00</dd></div>
-          <div><dt>Teléfono y WhatsApp</dt><dd><a href="tel:+50230181300">3018 1300</a></dd></div>
-        </dl>
-        <a class="btn btn--claro" href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener"><span>Cómo llegar</span></a>
+  <div class="portada__sala campo-oscuro">
+    <div class="portada__marco">
+      <div id="fotos-portada" class="fundido foto foto--3x2" data-fundido>
+        <img src="assets/equipo.webp" alt="El equipo de Labella cortando la cinta vino en la inauguración del salón" width="722" height="568" fetchpriority="high" data-pie="El equipo de Labella el día que cortó la cinta.">
+        <img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884" loading="lazy" data-pie="Color y rizos, hechos en el salón.">
+        <img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure en tono natural" width="722" height="545" loading="lazy" data-pie="Manicure y pedicure en tono natural.">
+        <img src="assets/cejas.webp" alt="Diseño de cejas con pinza" width="724" height="303" loading="lazy" data-pie="Diseño y perfilado de cejas.">
       </div>
-      <div class="mapa rev" style="--d:120ms">
-        <iframe src="https://www.google.com/maps?q=15+Avenida+A+4-59,+Zona+13,+Ciudad+de+Guatemala&amp;output=embed" title="Mapa de Labella Salón + Spa en 15 Avenida A 4-59, Zona 13, Ciudad de Guatemala" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p class="pie-foto portada__pie" data-fundido-pie data-para="fotos-portada">El equipo de Labella el día que cortó la cinta.</p>
+      <div class="fundido-elegir" data-fundido-elegir data-para="fotos-portada" role="group" aria-label="Elegir foto" hidden>
+        <button type="button" aria-pressed="true">La cinta</button>
+        <button type="button" aria-pressed="false">Cabello</button>
+        <button type="button" aria-pressed="false">Uñas</button>
+        <button type="button" aria-pressed="false">Cejas</button>
       </div>
     </div>
   </div>
 </section>
 
-<section class="cierre" id="reservar" aria-labelledby="titulo-reservar" data-amb>
-  <div class="amb" aria-hidden="true">
-    <div class="luz luz--1 a"></div>
-    <div class="luz luz--2 a"></div>
-    <svg class="veta a"><use href="#veta"/></svg>
+<!-- PRESENTACIÓN: título, nota y fila de datos -->
+<section class="presenta envoltura" aria-labelledby="titulo-presenta" data-reveal-group>
+  <div class="presenta__fila rejilla">
+    <h2 id="titulo-presenta" class="t-display" data-reveal>Tu cita antes<br> del trabajo</h2>
+    <p class="presenta__nota" data-reveal>De lunes a viernes abrimos a las 6:30 y los sábados a las 7:00, para que tu cita quepa antes de empezar el día. Escríbenos y te confirmamos la hora.</p>
   </div>
-  <div class="wrap">
-    <h2 class="rev" id="titulo-reservar"><span class="linea"><span>Reserva tu momento</span></span></h2>
-    <p class="intro rev" style="--d:120ms">Escríbenos por WhatsApp y te confirmamos tu cita.</p>
-    <p class="cierre__cta rev" style="--d:200ms">
-      <!-- TODO confirmar WhatsApp: este es el único lugar del HTML con la URL; la fuente principal es WHATSAPP en script.js -->
-      <span class="iman"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener" data-wa><svg aria-hidden="true"><use href="#wa"/></svg><span>Reservar por WhatsApp</span></a></span>
-    </p>
-    <p class="redes rev" style="--d:260ms">Síguenos en Instagram:
-      <!-- TODO: reemplazar [INSTAGRAM] por el enlace real -->
-      <span class="pendiente">[INSTAGRAM]</span>
-    </p>
+  <ul class="datos-fila">
+    <li data-reveal><span class="serif t-head cifras">6:30</span><span class="t-small nota">Abrimos de lunes a viernes. Los sábados, a las 7:00.</span></li>
+    <li data-reveal><span class="serif t-head">Zona 13</span><span class="t-small nota">15 Avenida A 4-59, Ciudad de Guatemala.</span></li>
+    <li data-reveal><span class="serif t-head">Seis servicios</span><span class="t-small nota">Cabello, uñas, cejas, rostro, masajes y cera, en un mismo lugar.</span></li>
+    <li data-reveal><span class="serif t-head cifras">3 por Q500</span><span class="t-small nota">Masajes relajantes de 45 minutos con piedras calientes.</span></li>
+  </ul>
+</section>
+
+<!-- SERVICIOS EN BREVE: la hoja de servicios con su talón -->
+<section class="carta envoltura" aria-labelledby="titulo-carta">
+  <div class="carta__in rejilla">
+    <div class="carta__hoja hoja feston-abajo" data-reveal-group>
+      <h2 id="titulo-carta" class="t-display" data-reveal>Del cabello<br> a los pies</h2>
+      <ul class="carta__lista">
+        <li data-reveal>
+          <h3>Cabello</h3>
+          <p>Cortes, color, peinados, tratamientos capilares y bioplastia. Trabajamos con Firenze y Chihtsai.</p>
+        </li>
+        <li data-reveal>
+          <h3>Manicure y pedicure</h3>
+          <p>Cuidado y diseño de uñas, con acabado limpio y natural.</p>
+        </li>
+        <li data-reveal>
+          <h3>Cejas</h3>
+          <p>Diseño y perfilado para enmarcar tu mirada.</p>
+        </li>
+        <li data-reveal>
+          <h3>Limpieza facial</h3>
+          <p>Nueva en el salón, con productos Hubis Lab.</p>
+        </li>
+        <li data-reveal>
+          <h3>Masaje relajante</h3>
+          <p>45 minutos con piedras calientes. En promoción: <strong class="carta__promo">3 por Q500</strong>. Confirma disponibilidad al reservar.</p>
+        </li>
+        <li data-reveal>
+          <h3>Depilación con cera</h3>
+          <p>Pregúntanos por las zonas que trabajamos.</p>
+        </li>
+      </ul>
+      <div class="talon carta__talon" data-reveal>
+        <p>El precio depende del servicio y de tu cabello. Te lo confirmamos por WhatsApp antes de tu cita.</p>
+        <a class="enlace" href="servicios.html">Ver todos los servicios</a>
+      </div>
+    </div>
+    <div class="carta__fotos" data-reveal-group>
+      <div class="carta__grande foto foto--4x5" data-reveal>
+        <img src="assets/rizos.webp" alt="Rizos castaños con mechas doradas, hechos en el salón" width="661" height="884" loading="lazy">
+      </div>
+      <div class="carta__chica foto foto--4x3" data-reveal>
+        <img src="assets/manicure.webp" alt="Manicure y pedicure con acabado natural" width="722" height="545" loading="lazy">
+      </div>
+      <p class="pie-foto" data-reveal>Color y rizos hechos en el salón, y manicure en tono natural.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVA: la tarjeta de respuesta (compartida) -->
+<section class="respuesta campo-vino" aria-labelledby="titulo-reserva">
+  <div class="respuesta__in envoltura rejilla" data-reveal-group>
+    <p class="respuesta__nota" data-reveal>Dinos qué servicio quieres y qué día te queda. Te confirmamos la hora por WhatsApp.</p>
+    <div class="respuesta__lugar" data-reveal>
+      <div class="respuesta__tarjeta">
+        <div class="cinta" aria-hidden="true"></div>
+        <h2 id="titulo-reserva">Reserva tu cita</h2>
+        <p>Lunes a viernes desde las 6:30 y sábados desde las 7:00, en la 15 Avenida A 4-59, zona 13.</p>
+        <a class="btn btn--barra" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>Escribir por WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 
 </main>
 
+<!-- PIE: el reverso de la tarjeta (igual en todas las páginas) -->
 <footer class="pie">
-  <div class="pie__in">
-    <div>
-      <p class="marca"><img src="assets/logo.webp" alt="" width="147" height="124" loading="lazy"><span>Labella Salón + Spa</span></p>
-      <p>15 Avenida A 4-59, Zona 13, Ciudad de Guatemala</p>
+  <div class="cinta cinta--fina" aria-hidden="true"></div>
+  <div class="pie__fondo envoltura rejilla">
+    <div class="pie__tarjeta feston-arriba">
+      <div class="pie__mensaje">
+        <h2>Te esperamos</h2>
+        <p>Abrimos de lunes a viernes de 6:30 a 17:00 y los sábados de 7:00 a 16:00. Escríbenos y te confirmamos tu hora.</p>
+        <nav class="pie__nav" aria-label="Páginas del sitio">
+          <ul>
+            <li><a href="index.html" aria-current="page">Inicio</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="galeria.html">Galería</a></li>
+            <li><a href="nosotras.html">Nosotras</a></li>
+            <li><a href="contacto.html">Ubicación</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__datos">
+        <ul class="pie__lineas">
+          <li><a href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" data-wa>WhatsApp 3018 1300</a></li>
+          <li><a href="tel:+50230181300">Llamar al 3018 1300</a></li>
+          <li><a href="https://www.google.com/maps/search/?api=1&amp;query=15%20Avenida%20A%204-59%2C%20Zona%2013%2C%20Ciudad%20de%20Guatemala" target="_blank" rel="noopener">15 Avenida A 4-59, zona&nbsp;13</a></li>
+          <li><a href="contacto.html">Cómo llegar</a></li>
+        </ul>
+        <figure class="sello"><img src="assets/rizos.webp" alt="" width="661" height="884" loading="lazy"></figure>
+      </div>
+      <p class="pie__imprenta">Labella Salón + Spa, Ciudad de Guatemala</p>
     </div>
-    <a class="pie__arriba" href="#inicio">Volver arriba</a>
   </div>
 </footer>
-
-<a class="flotante" href="#reservar" data-wa aria-label="Reservar por WhatsApp">
-  <svg aria-hidden="true"><use href="#wa"/></svg>
-</a>
-
-<div class="resplandor" aria-hidden="true"></div>
 
 </body>
 </html>
