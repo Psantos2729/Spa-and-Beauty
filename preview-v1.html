@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista previa · Labella Salón + Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marfil:#F6EFE3; --marmol:#E9DDC8; --bronce:#6F5839; --dorado:#B8995F;
+  --espresso:#2B211A; --suave:#5E5246; --vino:#7B2D4E;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --s1:8px;--s2:16px;--s3:24px;--s4:40px;--s5:64px;--s6:104px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--espresso);background:var(--marfil);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--bronce);outline-offset:3px}
+
+.preview-bar{background:var(--espresso);color:var(--marfil);font-size:14px;padding:10px var(--s2);text-align:center}
+
+/* ---------- botones ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--bronce);color:#FBF6EC;text-decoration:none;font-weight:500;font-size:17px;transition:transform 160ms var(--ease-out),background-color 200ms ease}
+.btn svg{width:22px;height:22px;flex:none;transition:transform 200ms var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn--claro{background:transparent;color:var(--bronce);box-shadow:inset 0 0 0 1.5px var(--bronce)}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{background:#5C4829}
+  .btn:hover svg{transform:translateX(3px) rotate(-8deg)}
+  .btn--claro:hover{background:rgba(111,88,57,.08)}
+}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:var(--s4) var(--s3) var(--s5);
+  background:
+    radial-gradient(900px 500px at 85% 10%,rgba(184,153,95,.18),transparent 60%),
+    radial-gradient(700px 500px at 0% 100%,rgba(233,221,200,.9),transparent 65%),
+    var(--marfil)}
+.hero__inner{max-width:1180px;margin:0 auto;display:grid;gap:var(--s4);align-items:center}
+.marca{display:flex;align-items:center;gap:14px;margin-bottom:var(--s4)}
+.marca img{width:56px;height:56px;border-radius:50%}
+.marca span{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.02em}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(46px,9vw,92px);line-height:.98;letter-spacing:-.01em}
+h1 span{display:block}
+.hero p.lead{margin-top:var(--s3);max-width:34ch;font-size:19px;color:var(--suave)}
+.hero__cta{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)}
+.horario{margin-top:var(--s3);font-size:15px;color:var(--suave)}
+.arco{position:relative;justify-self:center;width:min(86%,420px)}
+.arco::before{content:"";position:absolute;inset:-14px -14px 14px 14px;border:1.5px solid var(--dorado);border-radius:999px 999px 0 0}
+.arco img{position:relative;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%;border-radius:999px 999px 0 0}
+
+/* ---------- secciones ---------- */
+section{padding:var(--s5) var(--s3)}
+.wrap{max-width:1180px;margin:0 auto}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(34px,5vw,54px);line-height:1.05;max-width:18ch}
+.intro{margin-top:var(--s2);color:var(--suave);max-width:46ch}
+
+.servicios{background:var(--marmol)}
+.grid{margin-top:var(--s4);display:grid;gap:var(--s3);grid-template-columns:1fr}
+.card{background:var(--marfil);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform 240ms var(--ease-out)}
+.card__foto{overflow:hidden;aspect-ratio:4/3}
+.card__foto img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
+.card__txt{padding:var(--s3);display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.1}
+.card p{color:var(--suave);font-size:16px}
+.precio{margin-top:auto;padding-top:var(--s1);font-weight:500;color:var(--bronce)}
+.nuevo{align-self:flex-start;font-size:14px;font-weight:500;color:var(--marfil);background:var(--bronce);padding:2px 12px;border-radius:999px}
+.card--vino{background:var(--vino);color:#FBF1F4}
+.card--vino p,.card--vino .precio{color:#F2D9E2}
+.card--vino .precio{font-family:var(--serif);font-size:32px;font-weight:600;color:#fff}
+.card--solo{justify-content:center;background:transparent;box-shadow:inset 0 0 0 1.5px var(--dorado)}
+@media (hover:hover) and (pointer:fine){
+  .card:hover{transform:translateY(-4px)}
+  .card:hover .card__foto img{transform:scale(1.04)}
+}
+
+/* ---------- galeria ---------- */
+.galeria-grid{margin-top:var(--s4);display:grid;gap:var(--s2);grid-template-columns:1fr 1fr}
+.tile{overflow:hidden;border-radius:16px;background:var(--marmol)}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
+.tile--ancha{grid-column:1/-1;aspect-ratio:16/10}
+.tile--a{aspect-ratio:4/5}
+.tile--a:last-child{grid-column:1/-1;aspect-ratio:16/9}
+@media (hover:hover) and (pointer:fine){.tile:hover img{transform:scale(1.04)}}
+
+/* ---------- estilo (solo vista previa) ---------- */
+.estilo{background:var(--espresso);color:var(--marfil)}
+.estilo h2{max-width:none}
+.muestras{margin-top:var(--s4);display:grid;gap:var(--s2);grid-template-columns:repeat(2,1fr)}
+.muestra{border-radius:14px;padding:var(--s2);min-height:112px;display:flex;flex-direction:column;justify-content:flex-end;font-size:14px;line-height:1.3}
+.muestra b{font-weight:500;font-size:15px}
+.tipos{margin-top:var(--s4);display:grid;gap:var(--s3)}
+.tipo{border-top:1px solid rgba(246,239,227,.25);padding-top:var(--s2)}
+.tipo .a{font-family:var(--serif);font-size:46px;line-height:1.05;font-weight:500}
+.tipo .b{font-family:var(--sans);font-size:19px;margin-top:6px}
+.tipo small{display:block;margin-top:8px;font-size:14px;opacity:.75}
+
+/* ---------- cierre ---------- */
+.cierre{text-align:left}
+.cierre__in{max-width:1180px;margin:0 auto;display:grid;gap:var(--s4)}
+.datos{display:grid;gap:var(--s2);font-size:17px}
+.datos dt{font-family:var(--serif);font-weight:600;font-size:22px}
+.datos dd{margin:0;color:var(--suave)}
+
+/* ---------- boton flotante ---------- */
+.flotante{position:fixed;right:18px;bottom:18px;z-index:10;width:60px;height:60px;border-radius:50%;background:var(--bronce);color:#FBF6EC;display:grid;place-items:center;box-shadow:0 8px 24px rgba(43,33,26,.28);transition:transform 160ms var(--ease-out)}
+.flotante svg{width:30px;height:30px}
+.flotante::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--bronce);opacity:0;animation:aro 1.6s var(--ease-out) 1.4s 2}
+.flotante:active{transform:scale(.94)}
+@keyframes aro{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.5);opacity:0}}
+
+/* ---------- animacion ---------- */
+.entra{opacity:0;transform:translateY(12px);animation:entra 400ms var(--ease-out) forwards;animation-delay:var(--d,0ms)}
+.arco{opacity:0;transform:scale(.97);animation:entra-arco 400ms var(--ease-out) 150ms forwards}
+@keyframes entra{to{opacity:1;transform:none}}
+@keyframes entra-arco{to{opacity:1;transform:none}}
+.rev{opacity:0;transform:translateY(10px);transition:opacity 360ms var(--ease-out),transform 360ms var(--ease-out);transition-delay:var(--d,0ms)}
+.rev.in{opacity:1;transform:none}
+.card.rev.in{transition:opacity 360ms var(--ease-out),transform 240ms var(--ease-out)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .entra,.arco,.rev{transform:none;animation-duration:1ms;transition:opacity 200ms ease}
+  .flotante::after{animation:none}
+  .card,.card__foto img,.tile img,.btn,.btn svg{transition:none}
+}
+
+/* ---------- escritorio ---------- */
+@media (min-width:760px){
+  body{font-size:18px}
+  section{padding:var(--s6) var(--s4)}
+  .hero{padding:var(--s4) var(--s4) var(--s6)}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .galeria-grid{grid-template-columns:repeat(3,1fr)}
+  .tile--ancha{grid-column:span 2;aspect-ratio:auto}
+  .tile--a:last-child{grid-column:auto;aspect-ratio:4/5}
+  .muestras{grid-template-columns:repeat(6,1fr)}
+  .tipos{grid-template-columns:1fr 1fr}
+  .cierre__in{grid-template-columns:1.2fr 1fr;align-items:end}
+}
+@media (min-width:1100px){
+  .hero__inner{grid-template-columns:1.1fr .9fr}
+  .arco{width:100%;max-width:440px;justify-self:end}
+  .grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<div class="preview-bar">Vista previa de diseño. Aún no es la página final.</div>
+
+<header class="hero">
+  <div class="hero__inner">
+    <div>
+      <div class="marca entra">
+        <img src="assets/logo.webp" alt="Logo de Labella Salón + Spa" width="56" height="56">
+        <span>Labella Salón + Spa</span>
+      </div>
+      <h1>
+        <span class="entra" style="--d:60ms">Tu cabello,</span>
+        <span class="entra" style="--d:120ms">tus manos,</span>
+        <span class="entra" style="--d:180ms">tu calma.</span>
+      </h1>
+      <p class="lead entra" style="--d:260ms">Salón y spa en la zona 13. Cabello, uñas, cejas, masajes y limpieza facial. Reserva tu cita por WhatsApp.</p>
+      <div class="hero__cta entra" style="--d:320ms">
+        <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4.1A8 8 0 1 1 8.2 18.8L4 20z"/><path d="M9 9.2c.3 2.4 2.4 4.5 5.8 5.5l1.2-1.4-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2L9 9.2z" fill="currentColor" stroke="none"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn--claro" href="#servicios">Ver servicios</a>
+      </div>
+      <p class="horario entra" style="--d:380ms">Lunes a viernes de 6:30 a 17:00. Sábados de 7:00 a 16:00.</p>
+    </div>
+    <div class="arco">
+      <img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884">
+    </div>
+  </div>
+</header>
+
+<section class="servicios" id="servicios">
+  <div class="wrap">
+    <h2 class="rev">Lo que hacemos por ti</h2>
+    <p class="intro rev" style="--d:60ms">Una muestra de nuestros servicios. Para el resto, escríbenos y te ayudamos a elegir.</p>
+    <div class="grid">
+      <article class="card rev">
+        <div class="card__foto"><img src="assets/rizos.webp" alt="Rizos con color y brillo" loading="lazy" style="object-position:50% 25%"></div>
+        <div class="card__txt">
+          <h3>Cabello</h3>
+          <p>Cortes, color, peinados, tratamientos capilares y bioplastia.</p>
+          <span class="precio">Desde [PRECIOS]</span>
+        </div>
+      </article>
+      <article class="card rev" style="--d:60ms">
+        <div class="card__foto"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure natural" loading="lazy"></div>
+        <div class="card__txt">
+          <h3>Manicure y pedicure</h3>
+          <p>Cuidado y diseño de uñas, con acabado limpio y natural.</p>
+          <span class="precio">Desde [PRECIOS]</span>
+        </div>
+      </article>
+      <article class="card rev" style="--d:120ms">
+        <div class="card__foto"><img src="assets/cejas.webp" alt="Diseño de cejas con pinza" loading="lazy"></div>
+        <div class="card__txt">
+          <h3>Cejas</h3>
+          <p>Diseño y perfilado para enmarcar tu mirada.</p>
+          <span class="precio">Desde [PRECIOS]</span>
+        </div>
+      </article>
+      <article class="card card--vino rev">
+        <div class="card__txt">
+          <h3>Masaje relajante</h3>
+          <p>45 minutos de masaje, con final de piedras calientes.</p>
+          <span class="precio">3 por Q500</span>
+          <p>Promoción vigente. Confirma disponibilidad al reservar.</p>
+        </div>
+      </article>
+      <article class="card rev" style="--d:60ms">
+        <div class="card__txt">
+          <span class="nuevo">Nuevo</span>
+          <h3>Limpieza facial</h3>
+          <p>Con productos Hubis Lab.</p>
+          <span class="precio">Desde [PRECIOS]</span>
+        </div>
+      </article>
+      <article class="card card--solo rev" style="--d:120ms">
+        <div class="card__txt">
+          <h3>¿No sabes por dónde empezar?</h3>
+          <p>Cuéntanos qué buscas y te recomendamos.</p>
+          <a class="btn" style="margin-top:12px;align-self:flex-start" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="galeria">
+  <div class="wrap">
+    <h2 class="rev">Nuestro trabajo</h2>
+    <div class="galeria-grid">
+      <figure class="tile tile--ancha rev"><img src="assets/antes-despues.webp" alt="Cabello dañado antes y liso con brillo después del tratamiento" loading="lazy"></figure>
+      <figure class="tile tile--a rev" style="--d:60ms"><img src="assets/equipo.webp" alt="Equipo de Labella en la inauguración del salón" loading="lazy" style="object-position:50% 40%"></figure>
+      <figure class="tile tile--a rev"><img src="assets/manicure.webp" alt="Manicure y pedicure con flores blancas" loading="lazy"></figure>
+      <figure class="tile tile--a rev" style="--d:60ms"><img src="assets/cejas.webp" alt="Cejas perfiladas" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="estilo">
+  <div class="wrap">
+    <h2 class="rev">Paleta y tipografía</h2>
+    <div class="muestras">
+      <div class="muestra rev" style="background:#F6EFE3;color:#2B211A"><b>Marfil</b>#F6EFE3<br>fondo</div>
+      <div class="muestra rev" style="background:#E9DDC8;color:#2B211A"><b>Mármol</b>#E9DDC8<br>secciones</div>
+      <div class="muestra rev" style="background:#B8995F;color:#2B211A"><b>Dorado</b>#B8995F<br>detalles</div>
+      <div class="muestra rev" style="background:#6F5839;color:#FBF6EC"><b>Bronce</b>#6F5839<br>botones</div>
+      <div class="muestra rev" style="background:#7B2D4E;color:#FBF1F4"><b>Vino</b>#7B2D4E<br>promociones</div>
+      <div class="muestra rev" style="background:#2B211A;color:#F6EFE3;box-shadow:inset 0 0 0 1px rgba(246,239,227,.3)"><b>Espresso</b>#2B211A<br>texto</div>
+    </div>
+    <div class="tipos">
+      <div class="tipo rev"><div class="a">Cormorant Garamond</div><small>Títulos. Serif fina, hermana del logo.</small></div>
+      <div class="tipo rev" style="--d:60ms"><div class="b">Jost, para textos y botones</div><small>Sans geométrica, limpia y legible en móvil.</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cierre">
+  <div class="cierre__in">
+    <div>
+      <h2 class="rev">Reserva tu momento</h2>
+      <p class="intro rev" style="--d:60ms">Escríbenos y te confirmamos tu cita.</p>
+      <p class="rev" style="--d:120ms;margin-top:24px"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener">Reservar por WhatsApp</a></p>
+    </div>
+    <dl class="datos rev">
+      <div><dt>Dirección</dt><dd>15 Avenida A 4-59, Zona 13, Ciudad de Guatemala</dd></div>
+      <div><dt>Horario</dt><dd>Lunes a viernes de 6:30 a 17:00<br>Sábados de 7:00 a 16:00</dd></div>
+      <div><dt>Instagram</dt><dd>[INSTAGRAM]</dd></div>
+    </dl>
+  </div>
+</section>
+
+<a class="flotante" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-4.1A8 8 0 1 1 8.2 18.8L4 20z"/><path d="M9 9.2c.3 2.4 2.4 4.5 5.8 5.5l1.2-1.4-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2L9 9.2z" fill="currentColor" stroke="none"/></svg>
+</a>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rev');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){
+    en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>

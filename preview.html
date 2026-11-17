@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vista previa de Labella Salón + Spa</title>
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marfil:#F6EFE3; --marmol:#E9DDC8; --bronce:#6F5839; --dorado:#B8995F;
+  --espresso:#2B211A; --suave:#5E5246; --vino:#7B2D4E;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-in-out:cubic-bezier(0.77,0,0.175,1);
+  --s1:8px;--s2:16px;--s3:24px;--s4:40px;--s5:64px;--s6:104px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--espresso);background:var(--marfil);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--bronce);outline-offset:3px}
+.oscuro :focus-visible{outline-color:var(--marfil)}
+.sprite{position:absolute;width:0;height:0;overflow:hidden}
+
+.preview-bar{position:relative;z-index:2;background:var(--espresso);color:var(--marfil);font-size:14px;padding:10px var(--s2);text-align:center}
+
+/* ---------- botones ---------- */
+.iman{display:inline-block}
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 28px;border-radius:999px;background:var(--bronce);color:#FBF6EC;text-decoration:none;font-weight:500;font-size:17px;transition:transform 160ms var(--ease-out)}
+.btn svg{position:relative;z-index:1;width:22px;height:22px;flex:none;transition:transform 240ms var(--ease-out)}
+.btn span{position:relative;z-index:1}
+.btn::before{content:"";position:absolute;inset:0;background:#5C4829;opacity:0;transition:opacity 200ms ease}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:0;width:45%;background:linear-gradient(100deg,transparent,rgba(255,236,196,.42),transparent);transform:translateX(-140%) skewX(-12deg)}
+.btn:active{transform:scale(.97)}
+.btn--claro{background:transparent;color:var(--bronce);box-shadow:inset 0 0 0 1.5px var(--bronce)}
+.btn--claro::before{background:rgba(111,88,57,.1)}
+.btn--claro::after{display:none}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover::before{opacity:1}
+  .btn:hover::after{transform:translateX(330%) skewX(-12deg);transition:transform 400ms var(--ease-out)}
+  .btn:hover svg{transform:translateX(2px) rotate(-10deg) scale(1.08)}
+}
+
+/* ---------- ambiente (fondos vivos) ---------- */
+.amb{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.capa{position:absolute;inset:-6% 0}
+.luz{position:absolute;border-radius:50%;will-change:transform}
+.veta{position:absolute;inset:0;width:100%;height:100%;filter:blur(.6px);opacity:.5;color:var(--dorado)}
+.polvo{position:absolute;inset:0}
+.mota{position:absolute;border-radius:50%;background:radial-gradient(circle,#E9D29C 0%,#B8995F 55%,rgba(184,153,95,0) 72%);opacity:0;animation:mota var(--t) linear var(--r) infinite}
+.polvo[data-capa="lejos"] .mota{filter:blur(.8px)}
+.polvo[data-capa="cerca"] .mota{filter:blur(2px)}
+@keyframes mota{
+  0%{transform:translate3d(0,0,0) scale(.6);opacity:0}
+  18%{opacity:var(--o)}
+  50%{transform:translate3d(calc(var(--dx)*.5),calc(var(--dy)*.5),0) scale(1)}
+  82%{opacity:var(--o)}
+  100%{transform:translate3d(var(--dx),var(--dy),0) scale(.7);opacity:0}
+}
+@keyframes respira{0%,100%{opacity:.38;transform:scale(1)}50%{opacity:.72;transform:scale(1.035)}}
+@keyframes deriva1{0%{transform:translate3d(0,0,0) scale(1)}100%{transform:translate3d(-9%,7%,0) scale(1.14)}}
+@keyframes deriva2{0%{transform:translate3d(0,0,0) scale(1.05)}100%{transform:translate3d(12%,-8%,0) scale(.92)}}
+@keyframes deriva3{0%{transform:translate3d(-6%,4%,0) scale(.95)}100%{transform:translate3d(8%,-5%,0) scale(1.1)}}
+@keyframes rayo{0%{transform:translate3d(-14vmax,0,0) rotate(24deg);opacity:.35}50%{opacity:.9}100%{transform:translate3d(12vmax,0,0) rotate(24deg);opacity:.45}}
+@keyframes calor{0%,100%{opacity:.55;transform:scale(.92)}50%{opacity:1;transform:scale(1.08)}}
+/* se pausa todo lo ambiental fuera de pantalla o con la pestaña oculta */
+.js [data-amb]:not(.vivo) .a,.js [data-amb]:not(.vivo) .mota,.js.oculta .a,.js.oculta .mota{animation-play-state:paused}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;padding:var(--s4) var(--s3) var(--s5);background:var(--marfil)}
+.hero .luz--1{width:64vmax;height:64vmax;right:-18vmax;top:-22vmax;background:radial-gradient(closest-side,rgba(240,221,178,.95),rgba(240,221,178,.4) 55%,transparent);animation:deriva1 24s ease-in-out infinite alternate}
+.hero .luz--2{width:52vmax;height:52vmax;left:-20vmax;bottom:-24vmax;background:radial-gradient(closest-side,rgba(184,153,95,.34),rgba(184,153,95,.12) 55%,transparent);animation:deriva2 28s ease-in-out infinite alternate}
+.hero .luz--3{width:44vmax;height:44vmax;left:26%;top:8%;background:radial-gradient(closest-side,rgba(255,251,240,.95),rgba(255,251,240,.35) 60%,transparent);animation:deriva3 19s ease-in-out infinite alternate}
+.rayo{position:absolute;left:38%;top:-30%;width:30vmax;height:170%;background:linear-gradient(90deg,transparent,rgba(255,246,224,.7) 45%,rgba(255,246,224,.25) 70%,transparent);animation:rayo 22s ease-in-out infinite alternate;will-change:transform}
+.hero .veta{animation:respira 16s ease-in-out infinite}
+.hero__inner{position:relative;max-width:1180px;margin:0 auto;display:grid;gap:var(--s5);align-items:center}
+.marca{display:flex;align-items:center;gap:14px;margin-bottom:var(--s4)}
+.marca img{width:56px;height:56px;border-radius:50%}
+.marca span{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.02em}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(48px,9.4vw,104px);line-height:.98;letter-spacing:-.01em}
+.linea{display:block;overflow:hidden;padding:.08em 0 .14em;margin:-.08em 0 -.14em}
+.linea>span{display:block}
+.hero .linea>span{animation:sube 900ms var(--ease-out) var(--d,0ms) both}
+.filete{display:block;width:88px;height:1.5px;background:var(--dorado);transform-origin:left}
+.hero .filete{margin-top:var(--s3);animation:dibujaX 800ms var(--ease-out) 620ms both}
+.hero p.lead{margin-top:var(--s3);max-width:34ch;font-size:19px;color:var(--suave)}
+.hero__cta{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2)}
+.horario{margin-top:var(--s3);font-size:15px;color:var(--suave)}
+.h{animation:aparece 700ms var(--ease-out) var(--d,0ms) both}
+
+.arco{position:relative;justify-self:center;width:min(82%,400px)}
+.arco__marco{position:absolute;inset:-14px -14px 14px 14px}
+.arco__marco i{position:absolute;inset:0;border:1.5px solid var(--dorado);border-radius:999px 999px 0 0;animation:marco 900ms var(--ease-out) 900ms both}
+.arco__ventana{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:999px 999px 0 0;background:var(--marmol)}
+.arco__zoom{position:absolute;inset:0;animation:asienta 1600ms var(--ease-out) 250ms both}
+.arco__zoom img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;transform:scale(1.12);will-change:transform}
+.arco__velo{position:absolute;inset:0;background:linear-gradient(180deg,#EFE4CF,var(--marfil));transform:scaleY(0);transform-origin:top;animation:velo 1100ms var(--ease-in-out) 250ms both}
+.arco__base{position:absolute;left:-14px;right:-14px;bottom:0;height:1.5px;background:var(--dorado);transform-origin:left;animation:dibujaX 900ms var(--ease-out) 1100ms both}
+
+@keyframes sube{from{transform:translateY(118%)}}
+@keyframes aparece{from{opacity:0;transform:translateY(14px)}}
+@keyframes dibujaX{from{transform:scaleX(0)}}
+@keyframes velo{from{transform:scaleY(1)}to{transform:scaleY(0)}}
+@keyframes asienta{from{transform:scale(1.16)}}
+@keyframes marco{from{opacity:0;transform:translate(-14px,14px)}}
+@keyframes desvanece{from{opacity:0}}
+
+/* ---------- cinta de servicios ---------- */
+.cinta{position:relative;overflow:hidden;background:var(--marfil);border-top:1px solid rgba(184,153,95,.55);border-bottom:1px solid rgba(184,153,95,.55)}
+.cinta__pista{display:flex;width:max-content;animation:cinta 46s linear infinite}
+.cinta ul{display:flex;align-items:center;list-style:none;padding:14px 0;flex:none}
+.cinta li{display:flex;align-items:center;white-space:nowrap;font-family:var(--serif);font-style:italic;font-weight:500;font-size:24px;color:var(--bronce)}
+.cinta li::after{content:"";width:7px;height:7px;margin:0 26px;background:var(--dorado);transform:rotate(45deg)}
+@keyframes cinta{to{transform:translateX(-50%)}}
+.cinta.pausada .cinta__pista{animation-play-state:paused}
+.cinta__pausa{position:absolute;right:0;top:0;bottom:0;width:76px;padding:0 0 0 28px;border:0;background:linear-gradient(90deg,rgba(246,239,227,0),var(--marfil) 42%);color:var(--bronce);cursor:pointer;display:grid;place-items:center}
+.cinta__pausa i{display:block;width:12px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor}
+.cinta.pausada .cinta__pausa i{width:0;height:0;border:7px solid transparent;border-left:12px solid currentColor;border-right:0}
+.cinta__pausa:focus-visible{outline-offset:-4px}
+@media (hover:hover) and (pointer:fine){.cinta:hover .cinta__pista{animation-play-state:paused}}
+
+/* ---------- secciones ---------- */
+section{position:relative;padding:var(--s5) var(--s3)}
+.wrap{position:relative;max-width:1180px;margin:0 auto}
+h2{font-family:var(--serif);font-weight:500;font-size:clamp(36px,5vw,58px);line-height:1.05;max-width:18ch}
+h2::after{content:"";display:block;width:72px;height:1.5px;margin-top:20px;background:var(--dorado);transform-origin:left}
+.intro{margin-top:var(--s2);color:var(--suave);max-width:46ch}
+
+/* revelados al hacer scroll */
+.js .rev{opacity:0;transform:translateY(14px);transition:opacity 500ms var(--ease-out) var(--d,0ms),transform 500ms var(--ease-out) var(--d,0ms)}
+.js .rev.in{opacity:1;transform:none}
+.js h2.rev{opacity:1;transform:none}
+.js h2.rev .linea>span{transform:translateY(118%);transition:transform 800ms var(--ease-out)}
+.js h2.rev::after{transform:scaleX(0);transition:transform 800ms var(--ease-out) 250ms}
+.js h2.rev.in .linea>span{transform:none}
+.js h2.rev.in::after{transform:none}
+
+/* ---------- servicios ---------- */
+.servicios{background:var(--marmol);overflow:hidden}
+.servicios .veta{opacity:.6;animation:respira 18s ease-in-out infinite}
+.servicios .veta{color:#fff}
+.servicios .luz{width:60vmax;height:60vmax;right:-20vmax;top:-10vmax;background:radial-gradient(closest-side,rgba(246,239,227,.9),transparent);animation:deriva2 26s ease-in-out infinite alternate}
+.grid{margin-top:var(--s4);display:grid;gap:var(--s3);grid-template-columns:1fr}
+.card{perspective:900px;display:flex}
+.card__in{position:relative;isolation:isolate;flex:1;display:flex;transition:transform 400ms var(--ease-out)}
+.card__in::before{content:"";position:absolute;z-index:-1;inset:14px 10px -10px;border-radius:26px;background:rgba(92,72,41,.42);filter:blur(20px);opacity:0;transition:opacity 300ms ease}
+.card__cuerpo{position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;border-radius:20px;background:var(--marfil)}
+.card__cuerpo::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;pointer-events:none;background:linear-gradient(100deg,transparent,rgba(232,208,150,.42),transparent);transform:translateX(-150%) skewX(-12deg)}
+.card__foto{overflow:hidden;aspect-ratio:4/3}
+.card__foto img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
+.card__txt{position:relative;padding:var(--s3);display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.1}
+.card p{color:var(--suave);font-size:16px}
+.precio{margin-top:auto;padding-top:var(--s1);font-weight:500;color:var(--bronce)}
+.nuevo{align-self:flex-start;font-size:14px;font-weight:500;color:var(--marfil);background:var(--bronce);padding:2px 12px;border-radius:999px}
+.card--facial .card__cuerpo{background:linear-gradient(160deg,#FBF6EC,var(--marfil))}
+.card--facial .card__txt::before{content:"";position:absolute;left:var(--s3);right:var(--s3);top:0;height:1.5px;background:var(--dorado);transform-origin:left;transition:transform 800ms var(--ease-out) 300ms}
+.js .card--facial.rev:not(.in) .card__txt::before{transform:scaleX(0)}
+.card--vino .card__cuerpo{background:var(--vino);color:#FBF1F4}
+.card--vino .card__txt{padding:var(--s4) var(--s3)}
+.card--vino p{color:#F2D9E2}
+.card--vino .precio{margin-top:var(--s1);font-family:var(--serif);font-size:44px;line-height:1;font-weight:600;color:#fff}
+.card--vino .luz{width:120%;aspect-ratio:1;left:-40%;top:-60%;background:radial-gradient(closest-side,rgba(214,170,120,.34),transparent);animation:deriva2 20s ease-in-out infinite alternate}
+.card--vino .mota{background:radial-gradient(circle,#F6E3B4 0%,#D8B878 50%,rgba(216,184,120,0) 72%)}
+.card--solo .card__cuerpo{background:rgba(246,239,227,.35);box-shadow:inset 0 0 0 1.5px var(--dorado);justify-content:center}
+.card--solo .card__cuerpo::after{display:none}
+.card--solo .card__txt{gap:10px}
+@media (hover:hover) and (pointer:fine){
+  .card:not(.card--solo):hover .card__in{transform:translateY(-5px)}
+  .card:not(.card--solo):hover .card__in::before{opacity:1}
+  .card:hover .card__foto img{transform:scale(1.06)}
+  .card:hover .card__cuerpo::after{transform:translateX(420%) skewX(-12deg);transition:transform 400ms var(--ease-out)}
+}
+
+/* ---------- galeria ---------- */
+.galeria-grid{margin-top:var(--s4);display:grid;gap:var(--s2);grid-template-columns:1fr 1fr}
+.tile{position:relative;overflow:hidden;border-radius:16px;background:var(--marmol)}
+.tile>img{width:100%;height:100%;object-fit:cover;transition:transform 400ms var(--ease-out)}
+.tile::after{content:"";position:absolute;inset:0;pointer-events:none;background:var(--marmol);transform:scaleY(0);transform-origin:top}
+.js .tile.rev{opacity:1;transform:none}
+.js .tile.rev::after{transform:scaleY(1);transition:transform 900ms var(--ease-in-out) var(--d,0ms)}
+.js .tile.rev.in::after{transform:scaleY(0)}
+.js .tile.rev>img,.js .tile.rev .ba{transform:scale(1.12);transition:transform 1200ms var(--ease-out) var(--d,0ms)}
+.js .tile.rev.in>img,.js .tile.rev.in .ba{transform:none}
+.js .tile.rev.listo>img{transition:transform 400ms var(--ease-out)}
+.tile--ba{grid-column:1/-1;aspect-ratio:4/5}
+.tile--equipo{grid-column:1/-1;aspect-ratio:16/10}
+.tile--c{aspect-ratio:4/5}
+@media (hover:hover) and (pointer:fine){.js .tile.rev.listo:hover>img,.tile:hover>img{transform:scale(1.05)}}
+
+/* antes / despues */
+.ba{position:absolute;inset:0}
+.ba img{position:absolute;top:0;left:0;width:200%;max-width:none;height:100%;object-fit:cover;user-select:none;-webkit-user-drag:none}
+.ba__despues{transform:translateX(-50%)}
+.ba__clip,.ba__contra,.ba__asa{position:absolute;inset:0;will-change:transform}
+.ba__clip{overflow:hidden;transform:translateX(-50%)}
+.ba__contra{transform:translateX(50%)}
+.ba__asa{pointer-events:none;transform:translateX(-50%)}
+.ba__asa::before{content:"";position:absolute;top:0;bottom:0;right:-1px;width:2px;background:var(--marfil)}
+.ba__asa i{position:absolute;right:-23px;top:50%;width:46px;height:46px;margin-top:-23px;border-radius:50%;background:var(--marfil);box-shadow:0 0 0 1.5px var(--dorado),0 6px 18px rgba(43,33,26,.3);display:grid;place-items:center;color:var(--bronce)}
+.ba__asa svg{width:22px;height:22px}
+.ba.suave .ba__clip,.ba.suave .ba__contra,.ba.suave .ba__asa{transition:transform 900ms var(--ease-in-out)}
+.ba__rango{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y;-webkit-appearance:none;appearance:none;background:transparent}
+.ba__rango::-webkit-slider-thumb{-webkit-appearance:none;width:2px;height:900px}
+.ba__rango::-moz-range-thumb{width:2px;height:900px;border:0}
+.ba__rango:focus-visible~.ba__asa i{outline:2px solid var(--bronce);outline-offset:3px}
+.ba__et{position:absolute;bottom:14px;padding:3px 14px;border-radius:999px;background:rgba(43,33,26,.72);color:var(--marfil);font-size:14px;pointer-events:none}
+.ba__et--a{left:14px}.ba__et--d{right:14px}
+
+/* ---------- estilo (solo vista previa) ---------- */
+.estilo{background:var(--espresso);color:var(--marfil)}
+.estilo h2{max-width:none}
+.muestras{margin-top:var(--s4);display:grid;gap:var(--s2);grid-template-columns:repeat(2,1fr)}
+.muestra{border-radius:14px;padding:var(--s2);min-height:112px;display:flex;flex-direction:column;justify-content:flex-end;font-size:14px;line-height:1.3}
+.muestra b{font-weight:500;font-size:15px}
+.tipos{margin-top:var(--s4);display:grid;gap:var(--s3)}
+.tipo{border-top:1px solid rgba(246,239,227,.25);padding-top:var(--s2)}
+.tipo .a{font-family:var(--serif);font-size:44px;line-height:1.05;font-weight:500}
+.tipo .b{font-family:var(--sans);font-size:19px;margin-top:6px}
+.tipo .c{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.2;color:#E3CD9B}
+.tipo small{display:block;margin-top:8px;font-size:14px;opacity:.78}
+
+/* ---------- cierre ---------- */
+.cierre{overflow:hidden;padding-bottom:calc(var(--s5) + 56px)}
+.cierre .luz--1{width:70vmax;height:70vmax;left:-24vmax;bottom:-36vmax;background:radial-gradient(closest-side,rgba(226,188,120,.5),rgba(226,188,120,.16) 55%,transparent);animation:calor 9s ease-in-out infinite}
+.cierre .luz--2{width:46vmax;height:46vmax;right:-14vmax;top:-18vmax;background:radial-gradient(closest-side,rgba(255,250,236,.95),transparent);animation:deriva3 21s ease-in-out infinite alternate}
+.cierre .veta{animation:respira 16s ease-in-out infinite}
+.cierre__in{position:relative;max-width:1180px;margin:0 auto;display:grid;gap:var(--s4)}
+.datos{display:grid;gap:var(--s2);font-size:17px}
+.datos dt{font-family:var(--serif);font-weight:600;font-size:22px}
+.datos dd{margin:0;color:var(--suave)}
+
+/* ---------- boton flotante ---------- */
+.flotante{position:fixed;right:18px;bottom:18px;z-index:10;width:60px;height:60px;border-radius:50%;background:var(--bronce);color:#FBF6EC;display:grid;place-items:center;box-shadow:0 8px 24px rgba(43,33,26,.28);transition:transform 160ms var(--ease-out)}
+.flotante svg{width:30px;height:30px;transition:transform 240ms var(--ease-out)}
+.flotante::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--bronce);opacity:0;animation:aro 1.8s var(--ease-out) 2.4s 3}
+.flotante:active{transform:scale(.94)}
+@keyframes aro{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.6);opacity:0}}
+@media (hover:hover) and (pointer:fine){
+  .flotante:hover{transform:scale(1.06)}
+  .flotante:hover svg{transform:rotate(-10deg)}
+}
+
+/* ---------- resplandor del cursor ---------- */
+.resplandor{position:fixed;left:-230px;top:-230px;z-index:5;width:460px;height:460px;border-radius:50%;pointer-events:none;opacity:0;background:radial-gradient(closest-side,rgba(222,190,124,.22),rgba(222,190,124,.08) 48%,transparent 72%);transition:opacity 400ms ease;will-change:transform}
+.resplandor.on{opacity:1}
+
+/* ---------- escritorio ---------- */
+@media (min-width:760px){
+  body{font-size:18px}
+  section{padding:var(--s6) var(--s4)}
+  .hero{padding:var(--s4) var(--s4) var(--s6)}
+  .cinta li{font-size:28px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .card--solo{grid-column:1/-1}
+  .card--solo .card__txt{flex-direction:row;align-items:center;justify-content:space-between;gap:var(--s3);padding:var(--s4)}
+  .galeria-grid{grid-template-columns:repeat(3,1fr)}
+  .tile--ba{grid-column:1;grid-row:1/span 2;aspect-ratio:auto;min-height:560px}
+  .tile--equipo{grid-column:2/span 2;aspect-ratio:16/9}
+  .tile--c{aspect-ratio:auto;min-height:260px}
+  .muestras{grid-template-columns:repeat(6,1fr)}
+  .tipos{grid-template-columns:repeat(3,1fr)}
+  .cierre{padding-bottom:var(--s6)}
+  .cierre__in{grid-template-columns:1.2fr 1fr;align-items:end}
+}
+@media (min-width:1100px){
+  .hero__inner{grid-template-columns:1.1fr .9fr;min-height:min(680px,calc(100vh - 190px))}
+  .arco{width:100%;max-width:430px;justify-self:end;margin-right:14px}
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .card--alta{grid-row:span 2}
+  .card--alta .card__foto{flex:1;aspect-ratio:auto;min-height:300px}
+  .card--alta .card__txt{flex:none}
+}
+
+/* ---------- movimiento reducido: todo visible y quieto, solo fundidos cortos ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important}
+  .hero .h,.hero .linea>span,.arco{animation:desvanece 200ms ease both!important}
+  .js .rev,.js h2.rev,.js .tile.rev{opacity:0;transform:none;transition:opacity 200ms ease}
+  .js .rev.in{opacity:1}
+  .js h2.rev .linea>span,.js h2.rev::after,.js .card--facial.rev:not(.in) .card__txt::before{transform:none;transition:none}
+  .js .tile.rev::after{display:none}
+  .js .tile.rev>img,.js .tile.rev .ba{transform:none;transition:none}
+  .btn,.btn svg,.card__in,.card__foto img,.tile>img,.flotante,.flotante svg{transition:none!important}
+  .btn::after,.card__cuerpo::after,.resplandor,.cinta__pausa,.polvo,.rayo{display:none!important}
+  .card:hover .card__in,.card:hover .card__foto img,.tile:hover>img,.btn:hover svg,.flotante:hover,.flotante:hover svg{transform:none!important}
+  .cinta__pista{display:block;width:auto}
+  .cinta ul{flex-wrap:wrap;justify-content:center;padding:14px var(--s2);row-gap:4px}
+  .cinta ul+ul{display:none}
+  .ba.suave .ba__clip,.ba.suave .ba__contra,.ba.suave .ba__asa{transition:none}
+}
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="wa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-4.1A8 8 0 1 1 8.2 18.8L4 20z"/><path d="M9 9.2c.3 2.4 2.4 4.5 5.8 5.5l1.2-1.4-2-1-.9.7c-.9-.4-1.7-1.2-2.1-2.1l.7-.9-1-2L9 9.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="veta" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" stroke="currentColor" stroke-linecap="round">
+    <path stroke-width="1.4" d="M-40 260C180 200 300 330 520 290S860 120 1060 190s280 150 430 110"/>
+    <path stroke-width=".8" d="M520 290c60 90 30 190 120 260s250 60 330 150 60 150 120 220"/>
+    <path stroke-width="1" d="M-40 640c160-50 260 30 400 10s210-110 360-90 220 120 380 110 240-90 380-60"/>
+    <path stroke-width=".7" d="M1060 190c-30 80 40 140 20 220s-110 120-100 200"/>
+    <path stroke-width=".6" d="M200 0c30 80-20 150 30 230s130 90 150 180"/>
+  </symbol>
+</svg>
+
+<div class="preview-bar">Vista previa de diseño. Aún no es la página final.</div>
+
+<header class="hero" data-amb>
+  <div class="amb" aria-hidden="true">
+    <div class="capa" data-prof=".16">
+      <div class="luz luz--1 a"></div>
+      <div class="luz luz--2 a"></div>
+      <div class="luz luz--3 a"></div>
+      <div class="rayo a"></div>
+    </div>
+    <div class="capa" data-prof=".08"><svg class="veta a"><use href="#veta"/></svg></div>
+    <div class="capa polvo" data-capa="lejos" data-prof=".05" data-n="6" data-nm="3"></div>
+    <div class="capa polvo" data-capa="medio" data-prof=".12" data-n="6" data-nm="2"></div>
+    <div class="capa polvo" data-capa="cerca" data-prof=".24" data-n="5" data-nm="2"></div>
+  </div>
+  <div class="hero__inner">
+    <div>
+      <div class="marca h">
+        <img src="assets/logo.webp" alt="Logo de Labella Salón + Spa" width="56" height="56">
+        <span>Labella Salón + Spa</span>
+      </div>
+      <h1>
+        <span class="linea"><span style="--d:120ms">Tu cabello,</span></span>
+        <span class="linea"><span style="--d:220ms">tus manos,</span></span>
+        <span class="linea"><span style="--d:320ms">tu calma.</span></span>
+      </h1>
+      <span class="filete" aria-hidden="true"></span>
+      <p class="lead h" style="--d:560ms">Salón y spa en la zona 13. Cabello, uñas, cejas, masajes y limpieza facial. Reserva tu cita por WhatsApp.</p>
+      <div class="hero__cta h" style="--d:660ms">
+        <span class="iman">
+          <a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#wa"/></svg><span>Reservar por WhatsApp</span>
+          </a>
+        </span>
+        <a class="btn btn--claro" href="#servicios"><span>Ver servicios</span></a>
+      </div>
+      <p class="horario h" style="--d:760ms">Lunes a viernes de 6:30 a 17:00. Sábados de 7:00 a 16:00.</p>
+    </div>
+    <div class="arco">
+      <div class="arco__marco" aria-hidden="true"><i></i></div>
+      <div class="arco__ventana">
+        <div class="arco__zoom"><img src="assets/rizos.webp" alt="Cabello castaño con mechas doradas y rizos suaves, trabajo del salón" width="661" height="884"></div>
+        <div class="arco__velo" aria-hidden="true"></div>
+      </div>
+      <span class="arco__base" aria-hidden="true"></span>
+    </div>
+  </div>
+</header>
+
+<div class="cinta" data-amb>
+  <div class="cinta__pista a">
+    <ul>
+      <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia</li><li>Manicure y pedicure</li><li>Cejas</li><li>Limpieza facial</li><li>Masaje relajante</li><li>Depilación con cera</li>
+    </ul>
+    <ul aria-hidden="true">
+      <li>Cortes</li><li>Color</li><li>Peinados</li><li>Tratamientos capilares</li><li>Bioplastia</li><li>Manicure y pedicure</li><li>Cejas</li><li>Limpieza facial</li><li>Masaje relajante</li><li>Depilación con cera</li>
+    </ul>
+  </div>
+  <button class="cinta__pausa" type="button" aria-pressed="false" aria-label="Pausar la cinta de servicios"><i aria-hidden="true"></i></button>
+</div>
+
+<section class="servicios" id="servicios" data-amb>
+  <div class="amb" aria-hidden="true">
+    <div class="luz a"></div>
+    <svg class="veta a"><use href="#veta"/></svg>
+  </div>
+  <div class="wrap">
+    <h2 class="rev"><span class="linea"><span>Lo que hacemos por ti</span></span></h2>
+    <p class="intro rev" style="--d:120ms">Una muestra de nuestros servicios. Para el resto, escríbenos y te ayudamos a elegir.</p>
+    <div class="grid">
+      <article class="card card--alta rev" data-tilt>
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="card__foto"><img src="assets/rizos.webp" alt="Rizos con color y brillo" loading="lazy" style="object-position:50% 45%"></div>
+          <div class="card__txt">
+            <h3>Cabello</h3>
+            <p>Cortes, color, peinados, tratamientos capilares y bioplastia.</p>
+            <span class="precio">Desde [PRECIOS]</span>
+          </div>
+        </div></div>
+      </article>
+      <article class="card rev" style="--d:70ms" data-tilt>
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="card__foto"><img src="assets/manicure.webp" alt="Manos y pies con manicure y pedicure natural" loading="lazy"></div>
+          <div class="card__txt">
+            <h3>Manicure y pedicure</h3>
+            <p>Cuidado y diseño de uñas, con acabado limpio y natural.</p>
+            <span class="precio">Desde [PRECIOS]</span>
+          </div>
+        </div></div>
+      </article>
+      <article class="card rev" style="--d:140ms" data-tilt>
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="card__foto"><img src="assets/cejas.webp" alt="Diseño de cejas con pinza" loading="lazy" style="object-position:62% 50%"></div>
+          <div class="card__txt">
+            <h3>Cejas</h3>
+            <p>Diseño y perfilado para enmarcar tu mirada.</p>
+            <span class="precio">Desde [PRECIOS]</span>
+          </div>
+        </div></div>
+      </article>
+      <article class="card card--vino rev" data-tilt data-amb>
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="amb" aria-hidden="true">
+            <div class="luz a"></div>
+            <div class="polvo" data-capa="medio" data-n="5" data-nm="3" data-lento></div>
+          </div>
+          <div class="card__txt">
+            <h3>Masaje relajante</h3>
+            <p>45 minutos de masaje, con final de piedras calientes.</p>
+            <span class="precio">3 por Q500</span>
+            <p>Promoción vigente. Confirma disponibilidad al reservar.</p>
+          </div>
+        </div></div>
+      </article>
+      <article class="card card--facial rev" style="--d:70ms" data-tilt>
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="card__txt">
+            <span class="nuevo">Nuevo</span>
+            <h3>Limpieza facial</h3>
+            <p>Con productos Hubis Lab.</p>
+            <span class="precio">Desde [PRECIOS]</span>
+          </div>
+        </div></div>
+      </article>
+      <article class="card card--solo rev">
+        <div class="card__in"><div class="card__cuerpo">
+          <div class="card__txt">
+            <div>
+              <h3>¿No sabes por dónde empezar?</h3>
+              <p>Cuéntanos qué buscas y te recomendamos. También hacemos depilación con cera.</p>
+            </div>
+            <a class="btn" style="align-self:flex-start;flex:none" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg><span>Escribir por WhatsApp</span></a>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="galeria">
+  <div class="wrap">
+    <h2 class="rev"><span class="linea"><span>Nuestro trabajo</span></span></h2>
+    <p class="intro rev" style="--d:120ms">Desliza la primera foto para ver el antes y el después.</p>
+    <div class="galeria-grid">
+      <figure class="tile tile--ba rev">
+        <div class="ba" id="ba">
+          <img class="ba__despues" src="assets/antes-despues.webp" alt="Después del tratamiento: cabello liso y con brillo" loading="lazy" draggable="false">
+          <div class="ba__clip"><div class="ba__contra"><img src="assets/antes-despues.webp" alt="Antes del tratamiento: cabello reseco y con frizz" loading="lazy" draggable="false"></div></div>
+          <span class="ba__et ba__et--a">Antes</span>
+          <span class="ba__et ba__et--d">Después</span>
+          <input class="ba__rango" type="range" min="0" max="100" value="50" step="1" aria-label="Comparar antes y después. Mueve para mostrar más de una u otra foto">
+          <div class="ba__asa" aria-hidden="true"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></svg></i></div>
+        </div>
+      </figure>
+      <figure class="tile tile--equipo rev" style="--d:90ms"><img src="assets/equipo.webp" alt="Equipo de Labella en la inauguración del salón" loading="lazy" style="object-position:50% 38%"></figure>
+      <figure class="tile tile--c rev" style="--d:60ms"><img src="assets/manicure.webp" alt="Manicure y pedicure con flores blancas" loading="lazy"></figure>
+      <figure class="tile tile--c rev" style="--d:150ms"><img src="assets/cejas.webp" alt="Cejas perfiladas" loading="lazy" style="object-position:62% 50%"></figure>
+    </div>
+  </div>
+</section>
+
+<section class="estilo oscuro">
+  <div class="wrap">
+    <h2 class="rev"><span class="linea"><span>Paleta y tipografía</span></span></h2>
+    <div class="muestras">
+      <div class="muestra rev" style="background:#F6EFE3;color:#2B211A"><b>Marfil</b>#F6EFE3<br>fondo</div>
+      <div class="muestra rev" style="--d:40ms;background:#E9DDC8;color:#2B211A"><b>Mármol</b>#E9DDC8<br>secciones</div>
+      <div class="muestra rev" style="--d:80ms;background:#B8995F;color:#2B211A"><b>Dorado</b>#B8995F<br>detalles</div>
+      <div class="muestra rev" style="--d:120ms;background:#6F5839;color:#FBF6EC"><b>Bronce</b>#6F5839<br>botones</div>
+      <div class="muestra rev" style="--d:160ms;background:#7B2D4E;color:#FBF1F4"><b>Vino</b>#7B2D4E<br>promociones</div>
+      <div class="muestra rev" style="--d:200ms;background:#2B211A;color:#F6EFE3;box-shadow:inset 0 0 0 1px rgba(246,239,227,.3)"><b>Espresso</b>#2B211A<br>texto</div>
+    </div>
+    <div class="tipos">
+      <div class="tipo rev"><div class="a">Cormorant Garamond</div><small>Títulos. Serif fina, hermana del logo.</small></div>
+      <div class="tipo rev" style="--d:60ms"><div class="b">Jost, para textos y botones</div><small>Sans geométrica, limpia y legible en móvil.</small></div>
+      <div class="tipo rev" style="--d:120ms"><div class="c">Luz que deriva, velos que se levantan, oro que se dibuja.</div><small>Movimiento. Lento en los fondos, rápido al tocar.</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cierre" data-amb>
+  <div class="amb" aria-hidden="true">
+    <div class="luz luz--1 a"></div>
+    <div class="luz luz--2 a"></div>
+    <svg class="veta a"><use href="#veta"/></svg>
+  </div>
+  <div class="cierre__in">
+    <div>
+      <h2 class="rev"><span class="linea"><span>Reserva tu momento</span></span></h2>
+      <p class="intro rev" style="--d:120ms">Escríbenos y te confirmamos tu cita.</p>
+      <p class="rev" style="--d:200ms;margin-top:24px">
+        <span class="iman"><a class="btn" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg><span>Reservar por WhatsApp</span></a></span>
+      </p>
+    </div>
+    <dl class="datos rev" style="--d:120ms">
+      <div><dt>Dirección</dt><dd>15 Avenida A 4-59, Zona 13, Ciudad de Guatemala</dd></div>
+      <div><dt>Horario</dt><dd>Lunes a viernes de 6:30 a 17:00<br>Sábados de 7:00 a 16:00</dd></div>
+      <div><dt>WhatsApp</dt><dd>3018 1300</dd></div>
+      <div><dt>Instagram</dt><dd>[INSTAGRAM]</dd></div>
+    </dl>
+  </div>
+</section>
+
+<a class="flotante" href="https://wa.me/50230181300?text=Hola%2C%20quiero%20reservar%20en%20Labella%20Sal%C3%B3n%20%2B%20Spa" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg aria-hidden="true"><use href="#wa"/></svg>
+</a>
+
+<div class="resplandor" aria-hidden="true"></div>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement;
+  var $=function(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))};
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var movil=window.matchMedia('(max-width:759px)').matches;
+  var hasIO='IntersectionObserver' in window;
+
+  /* ---- revelados al entrar en pantalla (una sola vez) ---- */
+  var revs=$('.rev');
+  if(!hasIO){revs.forEach(function(e){e.classList.add('in','listo')})}
+  else{
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(x){
+        if(!x.isIntersecting)return;
+        var t=x.target;t.classList.add('in');io.unobserve(t);
+        if(t.classList.contains('tile'))setTimeout(function(){t.classList.add('listo')},1400);
+        if(t.querySelector('#ba'))pista();
+      });
+    },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    revs.forEach(function(e){io.observe(e)});
+  }
+
+  /* ---- fondos vivos: solo corren cuando su seccion esta visible ---- */
+  var hero=d.querySelector('.hero'), heroOn=true;
+  var ambs=$('[data-amb]');
+  if(!hasIO){ambs.forEach(function(e){e.classList.add('vivo')})}
+  else{
+    var ao=new IntersectionObserver(function(en){
+      en.forEach(function(x){
+        x.target.classList.toggle('vivo',x.isIntersecting);
+        if(x.target===hero){heroOn=x.isIntersecting;if(heroOn)arranca()}
+      });
+    },{rootMargin:'80px 0px'});
+    ambs.forEach(function(e){ao.observe(e)});
+  }
+  d.addEventListener('visibilitychange',function(){root.classList.toggle('oculta',d.hidden)});
+
+  /* ---- cinta: boton de pausa (accesible por teclado) ---- */
+  var cinta=d.querySelector('.cinta'), pausa=d.querySelector('.cinta__pausa');
+  pausa.addEventListener('click',function(){
+    var p=cinta.classList.toggle('pausada');
+    pausa.setAttribute('aria-pressed',p);
+    pausa.setAttribute('aria-label',p?'Reanudar la cinta de servicios':'Pausar la cinta de servicios');
+  });
+
+  /* ---- antes / despues: un range nativo mueve dos capas con transform ---- */
+  var ba=d.getElementById('ba'), rango=ba.querySelector('.ba__rango');
+  var clip=ba.querySelector('.ba__clip'), contra=ba.querySelector('.ba__contra'), asa=ba.querySelector('.ba__asa');
+  function pinta(v){
+    var p=4+v*.92, o=p-100;
+    clip.style.transform='translateX('+o+'%)';
+    contra.style.transform='translateX('+(-o)+'%)';
+    asa.style.transform='translateX('+o+'%)';
+  }
+  rango.addEventListener('input',function(){ba.classList.remove('suave');pinta(+rango.value)});
+  function pista(){ /* gesto de invitacion, una sola vez */
+    if(reduce)return;
+    pinta(82);
+    setTimeout(function(){ba.classList.add('suave');pinta(50);
+      setTimeout(function(){ba.classList.remove('suave')},950);},700);
+  }
+
+  if(reduce)return; /* a partir de aqui todo es movimiento decorativo */
+
+  /* ---- polvo de luz (max 22 en escritorio, 10 en movil) ---- */
+  function r(a,b){return a+Math.random()*(b-a)}
+  var capas={lejos:{s:[2,3],o:[.35,.55],t:[20,30],y:[-50,-90]},medio:{s:[3,4.5],o:[.55,.85],t:[15,22],y:[-80,-140]},cerca:{s:[7,11],o:[.3,.45],t:[11,16],y:[-120,-200]}};
+  $('.polvo').forEach(function(c){
+    var k=capas[c.getAttribute('data-capa')], n=+c.getAttribute(movil?'data-nm':'data-n');
+    var lento=c.hasAttribute('data-lento')?1.5:1;
+    for(var i=0;i<n;i++){
+      var m=d.createElement('i'), s=r(k.s[0],k.s[1]), t=r(k.t[0],k.t[1])*lento;
+      m.className='mota';
+      m.style.cssText='left:'+r(4,96).toFixed(1)+'%;top:'+r(30,100).toFixed(1)+'%;width:'+s.toFixed(1)+'px;height:'+s.toFixed(1)+'px;--o:'+r(k.o[0],k.o[1]).toFixed(2)+';--t:'+t.toFixed(1)+'s;--r:-'+r(0,t).toFixed(1)+'s;--dx:'+r(-50,50).toFixed(0)+'px;--dy:'+(r(k.y[0],k.y[1])/lento).toFixed(0)+'px';
+      c.appendChild(m);
+    }
+  });
+
+  /* ---- un solo bucle rAF que se detiene cuando todo esta en reposo ---- */
+  var profs=$('.hero [data-prof]').map(function(e){return {el:e,p:+e.getAttribute('data-prof')}});
+  var foto=d.querySelector('.arco__zoom img'), marco=d.querySelector('.arco__marco'), glow=d.querySelector('.resplandor');
+  var S={sy:0,tsy:window.pageYOffset,px:0,py:0,tpx:0,tpy:0,gx:0,gy:0,tgx:0,tgy:0};
+  var imanes=[], corriendo=false;
+  function arranca(){if(!reduce&&!corriendo&&!d.hidden){corriendo=true;requestAnimationFrame(paso)}}
+  function paso(){
+    var vivo=false,i,m;
+    function lerp(k,t,f){var dlt=S[t]-S[k];if(Math.abs(dlt)>.04){S[k]+=dlt*f;vivo=true}else S[k]=S[t]}
+    lerp('sy','tsy',.14);lerp('px','tpx',.07);lerp('py','tpy',.07);lerp('gx','tgx',.16);lerp('gy','tgy',.16);
+    if(heroOn){
+      for(i=0;i<profs.length;i++)profs[i].el.style.transform='translate3d('+(S.px*profs[i].p*-.9).toFixed(2)+'px,'+(S.sy*profs[i].p+S.py*profs[i].p*-.9).toFixed(2)+'px,0)';
+      var fy=Math.max(-26,Math.min(26,S.sy*-.05));
+      foto.style.transform='translate3d('+(S.px*-.12).toFixed(2)+'px,'+(fy+S.py*-.1).toFixed(2)+'px,0) scale(1.12)';
+      marco.style.transform='translate3d('+(S.px*.09).toFixed(2)+'px,'+(S.sy*.03+S.py*.07).toFixed(2)+'px,0)';
+    }
+    if(fine)glow.style.transform='translate3d('+S.gx.toFixed(1)+'px,'+S.gy.toFixed(1)+'px,0)';
+    for(i=0;i<imanes.length;i++){
+      m=imanes[i];
+      var dx=m.tx-m.x, dy=m.ty-m.y;
+      if(Math.abs(dx)>.04||Math.abs(dy)>.04){m.x+=dx*.18;m.y+=dy*.18;vivo=true;m.el.style.transform='translate3d('+m.x.toFixed(2)+'px,'+m.y.toFixed(2)+'px,0)'}
+      else if(m.x!==m.tx||m.y!==m.ty){m.x=m.tx;m.y=m.ty;m.el.style.transform=m.tx||m.ty?'translate3d('+m.x+'px,'+m.y+'px,0)':''}
+    }
+    if(vivo&&!d.hidden)requestAnimationFrame(paso);else corriendo=false;
+  }
+
+  /* parallax al scroll: solo mientras el hero esta en pantalla */
+  window.addEventListener('scroll',function(){if(heroOn){S.tsy=window.pageYOffset;arranca()}},{passive:true});
+  arranca();
+
+  if(!fine)return; /* lo que sigue es solo para raton */
+
+  /* cursor: mueve la foto del arco y el resplandor dorado */
+  window.addEventListener('pointermove',function(e){
+    if(e.pointerType&&e.pointerType!=='mouse')return;
+    S.tpx=(e.clientX/window.innerWidth-.5)*100;
+    S.tpy=(e.clientY/window.innerHeight-.5)*100;
+    S.tgx=e.clientX;S.tgy=e.clientY;
+    if(!glow.classList.contains('on')){S.gx=S.tgx;S.gy=S.tgy;glow.classList.add('on')}
+    arranca();
+  },{passive:true});
+  root.addEventListener('mouseleave',function(){glow.classList.remove('on')});
+
+  /* boton magnetico */
+  $('.iman').forEach(function(el){
+    var m={el:el,x:0,y:0,tx:0,ty:0};imanes.push(m);
+    el.addEventListener('pointermove',function(e){
+      var b=el.getBoundingClientRect();
+      m.tx=Math.max(-8,Math.min(8,(e.clientX-(b.left+b.width/2)+m.x)*.09));
+      m.ty=Math.max(-6,Math.min(6,(e.clientY-(b.top+b.height/2)+m.y)*.25));
+      arranca();
+    });
+    el.addEventListener('pointerleave',function(){m.tx=0;m.ty=0;arranca()});
+  });
+
+  /* inclinacion 3D leve en tarjetas (max 2.5 grados) */
+  $('[data-tilt]').forEach(function(card){
+    var inn=card.querySelector('.card__in'), raf=0, ev=null;
+    card.addEventListener('pointermove',function(e){
+      ev=e;if(raf)return;
+      raf=requestAnimationFrame(function(){
+        raf=0;var b=card.getBoundingClientRect();
+        var x=(ev.clientX-b.left)/b.width-.5, y=(ev.clientY-b.top)/b.height-.5;
+        inn.style.transitionDuration='200ms';
+        inn.style.transform='translateY(-5px) rotateX('+(-y*5).toFixed(2)+'deg) rotateY('+(x*5).toFixed(2)+'deg)';
+      });
+    });
+    card.addEventListener('pointerleave',function(){
+      if(raf){cancelAnimationFrame(raf);raf=0}
+      inn.style.transitionDuration='';inn.style.transform='';
+    });
+  });
+})();
+</script>
+</body>
+</html>
